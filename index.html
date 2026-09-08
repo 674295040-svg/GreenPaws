@@ -1111,14 +1111,8 @@
 
         <!-- Guest Area -->
         <div id="header-guest-actions" style="display: flex; align-items: center; gap: 0.75rem;">
-          <button class="btn btn-outline btn-sm" onclick="App.openModal('auth-modal')">
+          <button class="btn btn-primary btn-sm" onclick="App.openModal('auth-modal')">
             เข้าสู่ระบบ / สมัครสมาชิก
-          </button>
-          <button class="btn btn-primary btn-sm" onclick="Auth.demoLogin('member'); App.showToast('เข้าสู่ระบบแบบสมาชิกสำเร็จ!', 'success');">
-            ⚡ Demo สมาชิก
-          </button>
-          <button class="btn btn-admin btn-sm btn-text-hide" onclick="Auth.demoLogin('admin'); App.showToast('เข้าสู่ระบบผู้ดูแลระบบ (Admin) สำเร็จ!', 'success');">
-            👑 Demo แอดมิน
           </button>
         </div>
 
@@ -1458,18 +1452,7 @@
         </button>
       </div>
 
-      <div style="background: var(--primary-surface); border: 1px dashed var(--primary); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; text-align: center;">
-        <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem;">⚡ ทดลองเข้าใช้งานทันที (ไม่ต้องพิมพ์):</div>
-        <div style="display: flex; gap: 0.5rem; justify-content: center;">
-          <button class="btn btn-primary btn-sm" onclick="Auth.demoLogin('member'); App.closeModal('auth-modal'); App.showToast('เข้าสู่ระบบแบบสมาชิกสำเร็จ!', 'success');">
-            เข้าสู่ระบบในฐานะสมาชิก
-          </button>
-          <button class="btn btn-admin btn-sm" onclick="Auth.demoLogin('admin'); App.closeModal('auth-modal'); App.showToast('เข้าสู่ระบบในฐานะแอดมินสำเร็จ!', 'success');">
-            เข้าสู่ระบบในฐานะแอดมิน
-          </button>
-        </div>
-      </div>
-
+      <!-- Login Form -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="form-group">
           <label class="form-label">อีเมล</label>
@@ -1799,7 +1782,6 @@
           <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
             <div><strong>สมาชิก:</strong> noey@example.com / password123</div>
             <div style="margin-top: 0.35rem;"><strong>แอดมิน:</strong> admin@greenpaws.com / admin</div>
-            <div style="margin-top: 0.5rem; color: var(--primary);">*มีปุ่ม Demo Login ให้คลิกเข้าสู่ระบบทันที</div>
           </div>
         </div>
       </div>
