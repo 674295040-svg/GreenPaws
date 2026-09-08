@@ -1,0 +1,3318 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenPaws (พฤกษา & เพื่อนรัก) - ศูนย์กลางการเรียนรู้และแลกเปลี่ยนต้นไม้สัตว์เลี้ยง</title>
+  <meta name="description" content="แพลตฟอร์มศูนย์รวมคนรักต้นไม้และสัตว์เลี้ยง แลกเปลี่ยนต้นไม้และอุปกรณ์ คลังความรู้พืชปลอดภัยต่อสัตว์เลี้ยง ระบบถาม-ตอบปัญหาพร้อม Solution Tag และโหมดอวดมุมสวย Showcase Gallery">
+  <meta name="keywords" content="ต้นไม้ปลอดภัยต่อแมว, ต้นไม้กับสุนัข, แลกเปลี่ยนต้นไม้, ตู้เทอร์ราเรียม, จัดสวนในบ้าน, GreenPaws">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+  
+  <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       Design System & Variables
+       ========================================================================== */
+    :root {
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-light: #d1fae5;
+      --primary-surface: rgba(5, 150, 105, 0.08);
+      
+      --secondary: #d97706;
+      --secondary-hover: #b45309;
+      --secondary-light: #fef3c7;
+      
+      --accent: #10b981;
+      --danger: #ef4444;
+      --danger-light: #fee2e2;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --safe: #10b981;
+      --safe-light: #d1fae5;
+      --info: #0ea5e9;
+      --info-light: #e0f2fe;
+
+      --admin-accent: #8b5cf6;
+      --admin-light: #ede9fe;
+
+      /* Neutrals (Light) */
+      --bg-page: #f8faf9;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.85);
+      --border-color: rgba(226, 232, 240, 0.95);
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-inverse: #ffffff;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 12px 30px -4px rgba(0, 0, 0, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #10b981;
+      --primary-hover: #34d399;
+      --primary-light: rgba(16, 185, 129, 0.2);
+      --primary-surface: rgba(16, 185, 129, 0.12);
+
+      --secondary: #f59e0b;
+      --secondary-hover: #fbbf24;
+      --secondary-light: rgba(245, 158, 11, 0.2);
+
+      --bg-page: #0b1315;
+      --bg-surface: #141f22;
+      --bg-surface-elevated: #1a292d;
+      --bg-glass: rgba(20, 31, 34, 0.88);
+      --border-color: rgba(255, 255, 255, 0.08);
+
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-inverse: #0f172a;
+
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 6px 18px -2px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 16px 36px -4px rgba(0, 0, 0, 0.7);
+
+      --admin-accent: #a78bfa;
+      --admin-light: rgba(167, 139, 250, 0.2);
+    }
+
+    /* Reset & Typography */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Prompt', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; font-size: 1rem; }
+    button { cursor: pointer; border: none; background: none; transition: all var(--transition-fast); }
+    img { max-width: 100%; display: block; object-fit: cover; }
+
+    /* Utilities */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .badge-safe { background-color: var(--safe-light); color: #065f46; }
+    [data-theme="dark"] .badge-safe { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+    .badge-toxic { background-color: var(--danger-light); color: #991b1b; }
+    [data-theme="dark"] .badge-toxic { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+    .badge-swap { background-color: var(--primary-light); color: #065f46; }
+    [data-theme="dark"] .badge-swap { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+    .badge-giveaway { background-color: var(--secondary-light); color: #92400e; }
+    [data-theme="dark"] .badge-giveaway { background-color: rgba(245, 158, 11, 0.2); color: #fde68a; }
+
+    .badge-admin {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.35);
+    }
+
+    .badge-solution {
+      background-color: #d1fae5;
+      color: #047857;
+      border: 1px solid #10b981;
+      font-weight: 700;
+    }
+    [data-theme="dark"] .badge-solution {
+      background-color: rgba(16, 185, 129, 0.25);
+      color: #6ee7b7;
+      border-color: #34d399;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #047857);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), #b45309);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: var(--primary-surface);
+    }
+
+    .btn-admin {
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+    .btn-admin:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.875rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.4rem;
+    }
+
+    .logo-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .logo-text span { color: var(--primary); }
+    .logo-subtitle {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1;
+      margin-top: -2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-toggle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+    .theme-toggle-btn:hover {
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    .user-menu-wrapper { position: relative; }
+    .user-pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+    }
+    .user-avatar-sm {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+    }
+    .user-name-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-dropdown {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      width: 250px;
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: 0.75rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 200;
+    }
+    .user-dropdown.show { display: flex; }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .dropdown-item:hover {
+      background-color: var(--primary-surface);
+      color: var(--primary);
+    }
+    .dropdown-divider {
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 0.35rem 0;
+    }
+
+    /* Hero */
+    .hero-section {
+      padding: 3.5rem 0 2.5rem;
+      background: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.12) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.09) 0%, transparent 45%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background-color: var(--primary-surface);
+      border: 1px solid rgba(5, 150, 105, 0.25);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 580px;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-stats-row {
+      display: flex;
+      gap: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); }
+
+    .hero-visual-card {
+      position: relative;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-visual-card img {
+      border-radius: var(--radius-md);
+      height: 280px;
+      width: 100%;
+    }
+    .hero-floating-badge {
+      position: absolute;
+      bottom: -15px;
+      left: 20px;
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-md);
+    }
+    .floating-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--safe-light);
+      color: #047857;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    /* Quick Checker */
+    .quick-checker-section {
+      margin-top: -1.5rem;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 2.5rem;
+    }
+    .quick-checker-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.75rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .checker-label-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 260px;
+    }
+    .checker-icon { font-size: 2rem; }
+    .checker-text h4 { font-size: 1.05rem; font-weight: 700; }
+    .checker-text p { font-size: 0.85rem; color: var(--text-muted); }
+
+    .checker-search-wrap {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .checker-input {
+      width: 100%;
+      padding: 0.8rem 1.2rem 0.8rem 2.8rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-color);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      outline: none;
+    }
+    .checker-input:focus {
+      border-color: var(--primary);
+      background-color: var(--bg-surface);
+      box-shadow: 0 0 0 4px var(--primary-surface);
+    }
+    .checker-input-icon {
+      position: absolute;
+      left: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* Navigation Tabs */
+    .main-tabs-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: var(--primary);
+      background-color: var(--primary-surface);
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background-color: var(--primary-surface);
+    }
+
+    /* Views */
+    .tab-content-view { display: none; }
+    .tab-content-view.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .view-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .filter-pills-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .filter-pill {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .filter-pill:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-pill.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Marketplace */
+    .marketplace-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.75rem;
+    }
+    .listing-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    .listing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(5, 150, 105, 0.4);
+    }
+    .listing-card-image-wrap {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .listing-card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .listing-card:hover .listing-card-image-wrap img { transform: scale(1.05); }
+    .listing-type-badge { position: absolute; top: 12px; left: 12px; z-index: 2; }
+    .listing-bookmark-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+    [data-theme="dark"] .listing-bookmark-btn {
+      background-color: rgba(20, 31, 34, 0.85);
+      color: #cbd5e1;
+    }
+    .listing-bookmark-btn.bookmarked { color: var(--danger); }
+    .listing-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .listing-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .listing-trade-details {
+      background-color: var(--bg-page);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .trade-row { display: flex; gap: 0.4rem; }
+    .trade-label { font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .trade-value {
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .listing-meta-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .listing-author {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .listing-author img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    /* Plant Directory */
+    .plant-directory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.75rem;
+    }
+    .plant-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+    }
+    .plant-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .plant-card.border-safe:hover { border-color: var(--safe); }
+    .plant-card.border-toxic:hover { border-color: var(--danger); }
+    .plant-card-img-wrap { position: relative; height: 200px; }
+    .plant-card-img-wrap img { width: 100%; height: 100%; }
+    .plant-card-safety-badge { position: absolute; top: 12px; left: 12px; }
+    .plant-card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .plant-names h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .plant-scientific {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .plant-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .plant-alert-box {
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .plant-alert-box.safe { background-color: var(--safe-light); color: #065f46; }
+    [data-theme="dark"] .plant-alert-box.safe { background-color: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
+    .plant-alert-box.toxic { background-color: var(--danger-light); color: #991b1b; }
+    [data-theme="dark"] .plant-alert-box.toxic { background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+    .plant-card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Q&A Forum */
+    .qa-layout-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .qa-thread-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+    }
+    .qa-thread-card:hover { box-shadow: var(--shadow-md); border-color: rgba(5, 150, 105, 0.35); }
+    .qa-thread-card.is-solved {
+      border-left: 5px solid #10b981;
+      background: linear-gradient(to right, rgba(16, 185, 129, 0.04), var(--bg-surface));
+    }
+    .qa-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .qa-tags-wrap { display: flex; align-items: center; gap: 0.5rem; }
+    .qa-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+    }
+    .qa-title:hover { color: var(--primary); }
+    .qa-content-preview {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    .verified-solution-highlight {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.03));
+      border: 1.5px solid var(--safe);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .solution-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .solution-badge-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #047857;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    [data-theme="dark"] .solution-badge-mark { color: #34d399; }
+    .solution-body { font-size: 0.92rem; color: var(--text-main); line-height: 1.6; }
+    .qa-footer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Showcase Gallery */
+    .gallery-masonry-grid { column-count: 3; column-gap: 1.5rem; }
+    @media (max-width: 992px) { .gallery-masonry-grid { column-count: 2; } }
+    @media (max-width: 600px) { .gallery-masonry-grid { column-count: 1; } }
+
+    .gallery-card {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(5, 150, 105, 0.4);
+    }
+    .gallery-img-container { position: relative; overflow: hidden; cursor: pointer; }
+    .gallery-img-container img { width: 100%; display: block; transition: transform 0.4s ease; }
+    .gallery-card:hover .gallery-img-container img { transform: scale(1.04); }
+    .gallery-overlay-badge { position: absolute; top: 12px; left: 12px; z-index: 2; }
+    .gallery-body { padding: 1.2rem; }
+    .gallery-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+    .gallery-caption { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .gallery-tags-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+    .gallery-tag-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-page);
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+    }
+    .gallery-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .like-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .like-button:hover, .like-button.liked {
+      color: #ef4444;
+      border-color: #ef4444;
+      background-color: rgba(239, 68, 68, 0.08);
+    }
+
+    /* Admin */
+    .admin-panel-wrap {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+    .admin-header-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .admin-stat-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .admin-stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .admin-tabs-nav {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+    .admin-tab-btn {
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+    }
+    .admin-tab-btn.active {
+      background-color: var(--admin-light);
+      color: var(--admin-accent);
+    }
+    .admin-table-wrap { overflow-x: auto; }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .admin-table th {
+      padding: 0.85rem 1rem;
+      background-color: var(--bg-page);
+      border-bottom: 2px solid var(--border-color);
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .admin-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .admin-table tr:hover { background-color: var(--primary-surface); }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-card {
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .modal-close-btn:hover { color: var(--danger); border-color: var(--danger); }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-color);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-surface);
+    }
+
+    /* Toasts */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .toast {
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.4rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 280px;
+      max-width: 400px;
+      animation: slideInRight 0.3s ease;
+    }
+    .toast.toast-success { border-left: 4px solid var(--safe); }
+    .toast.toast-error { border-left: 4px solid var(--danger); }
+    .toast.toast-info { border-left: 4px solid var(--info); }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 5rem;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      padding: 3.5rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.1rem; }
+      .quick-checker-card { flex-direction: column; align-items: stretch; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .btn-text-hide { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       Header
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="logo-brand" onclick="App.switchTab('market'); return false;">
+        <div class="logo-icon-wrap">🐾</div>
+        <div class="logo-text">
+          Green<span>Paws</span>
+          <span class="logo-subtitle">พฤกษา & เพื่อนรัก</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="สลับโหมดมืด/สว่าง">🌙</button>
+
+        <!-- Guest Area -->
+        <div id="header-guest-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="btn btn-outline btn-sm" onclick="App.openModal('auth-modal')">
+            เข้าสู่ระบบ / สมัครสมาชิก
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="Auth.demoLogin('member'); App.showToast('เข้าสู่ระบบแบบสมาชิกสำเร็จ!', 'success');">
+            ⚡ Demo สมาชิก
+          </button>
+          <button class="btn btn-admin btn-sm btn-text-hide" onclick="Auth.demoLogin('admin'); App.showToast('เข้าสู่ระบบผู้ดูแลระบบ (Admin) สำเร็จ!', 'success');">
+            👑 Demo แอดมิน
+          </button>
+        </div>
+
+        <!-- User Area -->
+        <div id="header-user-actions" class="user-menu-wrapper" style="display: none;">
+          <button id="user-pill-btn" class="user-pill-btn">
+            <img id="user-display-avatar" class="user-avatar-sm" src="" alt="Avatar">
+            <span id="user-display-name" class="user-name-label">ผู้ใช้งาน</span>
+            <span id="user-display-badge" class="badge badge-swap" style="font-size: 0.7rem;">สมาชิก</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">▼</span>
+          </button>
+
+          <div id="user-dropdown-menu" class="user-dropdown">
+            <a href="#" class="dropdown-item" onclick="App.openCreateListingModal(); return false;">
+              <span>➕</span> ลงประกาศแลกเปลี่ยนใหม่
+            </a>
+            <a href="#" class="dropdown-item" onclick="QA.openAskModal(); return false;">
+              <span>💬</span> ตั้งกระทู้ถามปัญหา
+            </a>
+            <a href="#" class="dropdown-item" onclick="Gallery.openShareModal(); return false;">
+              <span>📸</span> อวดมุมสวน / สัตว์เลี้ยง
+            </a>
+            <div class="dropdown-divider"></div>
+            <button id="dropdown-logout-btn" class="dropdown-item" style="color: var(--danger); width: 100%; text-align: left;">
+              <span>🚪</span> ออกจากระบบ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Hero
+       ======================================================================== -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-pill-badge">
+          <span>🌱</span> ชุมชนคนรักต้นไม้และสัตว์เลี้ยงอันดับ 1 ในไทย
+        </div>
+        <h1 class="hero-title">
+          สร้างบ้านสีเขียวที่ <br>
+          <span class="gradient-text">ปลอดภัยต่อสัตว์เลี้ยง</span> ของคุณ
+        </h1>
+        <p class="hero-subtitle">
+          พื้นที่แห่งการแบ่งปันกิ่งพันธุ์ แลกเปลี่ยนอุปกรณ์ ค้นหาต้นไม้ที่เป็นมิตรต่อสุนัขและแมว ถาม-ตอบทุกข้อสงสัย และอวดมุมสวนสุดอบอุ่นไปพร้อมกัน
+        </p>
+        <div class="hero-cta-group">
+          <button class="btn btn-primary" onclick="App.switchTab('market')">
+            🔄 สำรวจลานแลกเปลี่ยน
+          </button>
+          <button class="btn btn-secondary" onclick="App.switchTab('knowledge')">
+            🔍 เช็กต้นไม้ปลอดภัย (Pet-Safe)
+          </button>
+          <button class="btn btn-outline" onclick="App.switchTab('gallery')">
+            📸 ดูภาพอวดมุมสวน
+          </button>
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="stat-item">
+            <div class="stat-num">1,250+</div>
+            <div class="stat-label">สมาชิกในชุมชน</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">480+</div>
+            <div class="stat-label">ต้นไม้ & ของส่งต่อ</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">ปลอดภัย & กลั่นกรอง</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual-card">
+        <img src="https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=700&q=80" alt="Pet and Plant Living">
+        <div class="hero-floating-badge">
+          <div class="floating-badge-icon">✓</div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.95rem;">Pet-Safe Verified</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">ตรวจสอบความปลอดภัยโดยผู้เชี่ยวชาญ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Quick Safety Checker Bar
+       ======================================================================== -->
+  <section class="container quick-checker-section">
+    <div class="quick-checker-card">
+      <div class="checker-label-group">
+        <div class="checker-icon">🛡️</div>
+        <div class="checker-text">
+          <h4>ค้นหาความปลอดภัยของต้นไม้ทันที</h4>
+          <p>พิมพ์ชื่อต้นไม้เพื่อเช็กว่ามีพิษต่อสุนัขหรือแมวหรือไม่</p>
+        </div>
+      </div>
+
+      <div class="checker-search-wrap">
+        <span class="checker-input-icon">🔍</span>
+        <input type="text" id="quick-safety-input" class="checker-input" placeholder="พิมพ์ชื่อต้นไม้ เช่น คล้า, มอนสเตอร่า, เฟิร์น, ลิลลี่ แล้วกด Enter...">
+      </div>
+
+      <button class="btn btn-primary" onclick="App.quickSearchPlant(document.getElementById('quick-safety-input').value.trim())">
+        ตรวจเช็กทันที
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Main Application Tabs & Views
+       ======================================================================== -->
+  <main class="container">
+    <nav class="main-tabs-nav" aria-label="Main Navigation">
+      <button class="tab-btn active" data-tab="market">
+        <span>🔄</span> ลานแลกเปลี่ยน & ส่งต่อ
+      </button>
+      <button class="tab-btn" data-tab="knowledge">
+        <span>🌿</span> คลังความรู้ & ตรวจสอบต้นไม้ (Pet-Safe)
+      </button>
+      <button class="tab-btn" data-tab="qa">
+        <span>💬</span> ถาม-ตอบปัญหา & คำตอบยืนยัน (Q&A)
+      </button>
+      <button class="tab-btn" data-tab="gallery">
+        <span>📸</span> โหมดแสดงรูปภาพ (Showcase Gallery)
+      </button>
+      <button id="nav-admin-tab-btn" class="tab-btn" data-tab="admin" style="display: none; color: #8b5cf6;">
+        <span>👑</span> แผงควบคุมผู้ดูแลระบบ (Admin)
+      </button>
+    </nav>
+
+    <!-- TAB 1: Marketplace -->
+    <section id="tab-view-market" class="tab-content-view active">
+      <div class="view-controls-bar">
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="filter-pills-group" id="market-category-filters">
+            <button class="filter-pill active" data-category="all">ทั้งหมด</button>
+            <button class="filter-pill" data-category="plants">🌿 ต้นไม้ & กิ่งพันธุ์</button>
+            <button class="filter-pill" data-category="pets">🐾 สัตว์เลี้ยง & หาบ้าน</button>
+            <button class="filter-pill" data-category="gear">🏺 ตู้ & อุปกรณ์ของใช้</button>
+          </div>
+
+          <div class="filter-pills-group" id="market-type-filters">
+            <button class="filter-pill active" data-type="all">ทุกประเภท</button>
+            <button class="filter-pill" data-type="swap">🔄 กำลังหาแลก</button>
+            <button class="filter-pill" data-type="giveaway">🎁 ส่งต่อฟรี / หาบ้าน</button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <input type="text" id="market-search-input" class="form-input" style="width: 240px; border-radius: var(--radius-full);" placeholder="ค้นหาประกาศแลกเปลี่ยน...">
+          <button class="btn btn-primary" onclick="App.openCreateListingModal()">
+            <span>➕</span> ลงประกาศใหม่
+          </button>
+        </div>
+      </div>
+
+      <div id="marketplace-grid-container" class="marketplace-grid"></div>
+    </section>
+
+    <!-- TAB 2: Knowledge Hub & Pet-Safe Checker -->
+    <section id="tab-view-knowledge" class="tab-content-view">
+      <div style="background: linear-gradient(135deg, rgba(5,150,105,0.08), rgba(217,119,6,0.05)); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">คลังความรู้ & ฐานข้อมูลพืชปลอดภัยต่อสัตว์เลี้ยง</h2>
+        <p style="color: var(--text-muted); max-width: 700px;">
+          รวบรวมข้อมูลสายพันธุ์ต้นไม้ยอดนิยม ระดับความเป็นพิษต่อสุนัขและแมว อาการที่ต้องเฝ้าระวัง พร้อมวิธีปฐมพยาบาลเบื้องต้นอย่างถูกต้องตามหลักสัตวแพทย์
+        </p>
+      </div>
+
+      <div class="view-controls-bar">
+        <div class="filter-pills-group" id="plant-safety-filters">
+          <button class="filter-pill active" data-safety="all">ทั้งหมด</button>
+          <button class="filter-pill" data-safety="safe">✓ ปลอดภัยต่อสัตว์เลี้ยง (Pet-Safe)</button>
+          <button class="filter-pill" data-safety="toxic">⚠️ มีสารพิษควรระวัง (Toxic)</button>
+        </div>
+
+        <input type="text" id="plant-search-input" class="form-input" style="width: 280px; border-radius: var(--radius-full);" placeholder="ค้นหาชื่อต้นไม้หรือชื่อวิทยาศาสตร์...">
+      </div>
+
+      <div id="plant-directory-grid-container" class="plant-directory-grid"></div>
+    </section>
+
+    <!-- TAB 3: Q&A Community Forum with Solution Tag -->
+    <section id="tab-view-qa" class="tab-content-view">
+      <div class="view-controls-bar">
+        <div class="filter-pills-group" id="qa-filters">
+          <button class="filter-pill active" data-filter="all">กระทู้ทั้งหมด</button>
+          <button class="filter-pill" data-filter="solved">✓ แก้ปัญหาได้แล้ว (Solved)</button>
+          <button class="filter-pill" data-filter="unsolved">⏳ รอคำตอบ (Open)</button>
+        </div>
+
+        <button class="btn btn-primary" onclick="QA.openAskModal()">
+          <span>💬</span> ตั้งกระทู้ถามปัญหา
+        </button>
+      </div>
+
+      <div id="qa-threads-container" class="qa-layout-grid"></div>
+    </section>
+
+    <!-- TAB 4: Showcase Gallery -->
+    <section id="tab-view-gallery" class="tab-content-view">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+        <div>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.35rem;">
+            📸 โหมดอวดมุมโปรด (Showcase Gallery)
+          </h2>
+          <p style="color: var(--text-muted);">
+            พื้นที่แชร์ไอเดียจัดสวนในบ้าน ตู้เทอร์ราเรียมระบบปิด และโมเมนต์ความน่ารักของสัตว์เลี้ยงกับธรรมชาติ
+          </p>
+        </div>
+        <button class="btn btn-secondary" onclick="Gallery.openShareModal()">
+          <span>✨</span> อวดมุมโปรดของคุณ
+        </button>
+      </div>
+
+      <div class="view-controls-bar">
+        <div class="filter-pills-group" id="gallery-filters">
+          <button class="filter-pill active" data-category="all">ทั้งหมด</button>
+          <button class="filter-pill" data-category="indoor-garden">🌿 มุมจัดสวนในบ้าน</button>
+          <button class="filter-pill" data-category="terrarium">🏺 ตู้เทอร์ราเรียม & พืชจิ๋ว</button>
+          <button class="filter-pill" data-category="cute-pets">🐾 สัตว์เลี้ยงกับสวนสวย</button>
+          <button class="filter-pill" data-category="balcony">🪴 สวนระเบียงคอนโด</button>
+        </div>
+      </div>
+
+      <div id="gallery-masonry-container" class="gallery-masonry-grid"></div>
+    </section>
+
+    <!-- TAB 5: Administrator Panel -->
+    <section id="tab-view-admin" class="tab-content-view">
+      <div class="admin-panel-wrap">
+        <div class="admin-header-banner">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+              <span class="badge badge-admin">ADMIN CONTROL</span>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">แผงควบคุมผู้ดูแลระบบ GreenPaws</h2>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              จัดการข้อมูลในระบบ ตรวจสอบโพสต์ของสมาชิก บริหารฐานข้อมูลพืช และดูสถิติแพลตฟอร์ม
+            </p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout(); App.switchTab('market');">
+            ออกจากสิทธิ์แอดมิน
+          </button>
+        </div>
+
+        <div id="admin-stats-grid" class="admin-stats-grid"></div>
+
+        <div class="admin-tabs-nav">
+          <button class="admin-tab-btn active" data-subtab="listings">จัดการประกาศแลกเปลี่ยน</button>
+          <button class="admin-tab-btn" data-subtab="plants">จัดการฐานข้อมูลต้นไม้</button>
+          <button class="admin-tab-btn" data-subtab="users">รายชื่อสมาชิก</button>
+        </div>
+
+        <div id="admin-listings-panel">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>รายการ</th>
+                  <th>ประเภท</th>
+                  <th>สถานะ</th>
+                  <th>การจัดการ</th>
+                </tr>
+              </thead>
+              <tbody id="admin-listings-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-plants-panel" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3>รายการต้นไม้ในฐานข้อมูล</h3>
+            <button class="btn btn-primary btn-sm" onclick="App.openModal('admin-add-plant-modal')">
+              + เพิ่มต้นไม้ใหม่เข้าฐานข้อมูล
+            </button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ต้นไม้</th>
+                  <th>ความปลอดภัย</th>
+                  <th>ระดับความเป็นพิษ</th>
+                  <th>การจัดการ</th>
+                </tr>
+              </thead>
+              <tbody id="admin-plants-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-users-panel" style="display: none;">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>สมาชิก</th>
+                  <th>บทบาท</th>
+                  <th>ความสนใจ</th>
+                  <th>วันที่เข้าร่วม</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       MODALS
+       ======================================================================== -->
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('auth-modal')">✕</button>
+      
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐾</div>
+        <h3 id="auth-modal-title" style="font-size: 1.5rem; font-weight: 800;">ยินดีต้อนรับสู่ GreenPaws</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">เข้าสู่ระบบเพื่อแลกเปลี่ยน ตั้งกระทู้ถาม และบันทึกรายการโปรด</p>
+      </div>
+
+      <div style="display: flex; background: var(--bg-page); border-radius: var(--radius-sm); padding: 0.35rem; margin-bottom: 1.5rem;">
+        <button id="auth-tab-login" class="btn btn-sm" style="flex: 1; background: var(--bg-surface); font-weight: 700;" onclick="showAuthTab('login')">
+          เข้าสู่ระบบ
+        </button>
+        <button id="auth-tab-register" class="btn btn-sm" style="flex: 1; color: var(--text-muted);" onclick="showAuthTab('register')">
+          สมัครสมาชิกใหม่
+        </button>
+      </div>
+
+      <div style="background: var(--primary-surface); border: 1px dashed var(--primary); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; text-align: center;">
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem;">⚡ ทดลองเข้าใช้งานทันที (ไม่ต้องพิมพ์):</div>
+        <div style="display: flex; gap: 0.5rem; justify-content: center;">
+          <button class="btn btn-primary btn-sm" onclick="Auth.demoLogin('member'); App.closeModal('auth-modal'); App.showToast('เข้าสู่ระบบแบบสมาชิกสำเร็จ!', 'success');">
+            เข้าสู่ระบบในฐานะสมาชิก
+          </button>
+          <button class="btn btn-admin btn-sm" onclick="Auth.demoLogin('admin'); App.closeModal('auth-modal'); App.showToast('เข้าสู่ระบบในฐานะแอดมินสำเร็จ!', 'success');">
+            เข้าสู่ระบบในฐานะแอดมิน
+          </button>
+        </div>
+      </div>
+
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">อีเมล</label>
+          <input type="email" id="login-email" class="form-input" placeholder="admin@greenpaws.com หรือ noey@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">รหัสผ่าน</label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">เข้าสู่ระบบ</button>
+      </form>
+
+      <form id="register-form" style="display: none;" onsubmit="handleRegisterSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">ชื่อ - นามสกุล หรือชื่อเล่น</label>
+          <input type="text" id="reg-name" class="form-input" placeholder="เช่น กานต์ & เจ้าเหมียวมังคุด" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">อีเมล</label>
+          <input type="email" id="reg-email" class="form-input" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">รหัสผ่าน</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="อย่างน้อย 6 ตัวอักษร" minlength="4" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ความสนใจพิเศษ</label>
+          <select id="reg-interest" class="form-select">
+            <option value="ทาสแมว & รักต้นไม้">🐱 ทาสแมว & รักต้นไม้</option>
+            <option value="คนรักน้องหมา & สวนสวย">🐶 คนรักน้องหมา & สวนสวย</option>
+            <option value="นักจัดตู้เทอร์ราเรียม">🏺 นักจัดตู้เทอร์ราเรียม / พืชชื้น</option>
+            <option value="มือใหม่หัดปลูกในบ้าน">🌱 มือใหม่หัดปลูกในบ้าน</option>
+            <option value="คนรักนกและสัตว์เล็ก">🦜 คนรักนกและกระต่าย</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">สร้างบัญชีผู้ใช้ใหม่</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Listing Modal -->
+  <div id="create-listing-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('create-listing-modal')">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.25rem;">ลงประกาศแลกเปลี่ยน / ส่งต่อ</h3>
+      
+      <form onsubmit="handleCreateListingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">ประเภทประกาศ</label>
+          <select id="listing-form-type" class="form-select">
+            <option value="swap">🔄 แลกเปลี่ยน (หาของมาแลกกัน)</option>
+            <option value="giveaway">🎁 แจกฟรี / ส่งต่อด้วยใจ / หาบ้านใหม่</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">หมวดหมู่</label>
+          <select id="listing-form-category" class="form-select">
+            <option value="plants">🌿 ต้นไม้ / กิ่งพันธุ์ / เมล็ดพันธุ์</option>
+            <option value="pets">🐾 สัตว์เลี้ยง / หาบ้านใหม่</option>
+            <option value="gear">🏺 ตู้กระจก / กรง / กระถาง / อุปกรณ์</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">หัวข้อประกาศ</label>
+          <input type="text" id="listing-form-title" class="form-input" placeholder="เช่น มีกิ่งชำเฟิร์นข้าหลวง อยากแลกกระบะทรายแมว" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">สิ่งที่คุณเสนอ (Offering)</label>
+          <textarea id="listing-form-offering" class="form-textarea" rows="2" placeholder="ระบุรายละเอียด สภาพ ขนาด หรือสายพันธุ์..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">สิ่งที่คุณอยากได้ หรือเงื่อนไข (Looking For)</label>
+          <input type="text" id="listing-form-looking" class="form-input" placeholder="เช่น อยากแลกกับของเล่นแมว หรือแจกฟรีสำหรับคนรักสัตว์" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">พิกัดสถานที่นัดรับ</label>
+          <input type="text" id="listing-form-location" class="form-input" placeholder="เช่น BTS สยาม / บางนา / ส่งพัสดุได้" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ช่องทางติดต่อ</label>
+          <input type="text" id="listing-form-contact" class="form-input" placeholder="Line ID หรือ เบอร์โทรศัพท์" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ลิงก์รูปภาพ (หรือใช้ภาพตัวอย่างของระบบ)</label>
+          <input type="url" id="listing-form-image" class="form-input" placeholder="https://images.unsplash.com/photo-...">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('create-listing-modal')">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">ยืนยันลงประกาศ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ask Question Modal (Q&A) -->
+  <div id="qa-ask-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('qa-ask-modal')">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.25rem;">ตั้งกระทู้ถามปัญหาต้นไม้ & สัตว์เลี้ยง</h3>
+
+      <form onsubmit="handleAskSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">หมวดหมู่ปัญหา</label>
+          <select id="qa-form-category" class="form-select">
+            <option value="toxic-emergency">🚨 สารพิษ & อาการฉุกเฉิน</option>
+            <option value="plant-health">🌿 สุขภาพต้นไม้ & การดูแล</option>
+            <option value="home-garden">🏺 ตู้พืช & สวนในบ้าน</option>
+            <option value="pet-behavior">🐾 พฤติกรรมสัตว์เลี้ยงกับต้นไม้</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">หัวข้อคำถาม</label>
+          <input type="text" id="qa-form-title" class="form-input" placeholder="เช่น น้องหมากินใบกวักมรกตเข้าไป ต้องปฐมพยาบาลอย่างไร?" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">รายละเอียดและอาการที่พบ</label>
+          <textarea id="qa-form-content" class="form-textarea" rows="5" placeholder="อธิบายเวลาที่เกิดเหตุ อาการของน้อง หรือภาพรวมของต้นไม้..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('qa-ask-modal')">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">ส่งคำถามเข้าสู่ชุมชน</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Share Showcase Modal (Gallery) -->
+  <div id="gallery-share-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('gallery-share-modal')">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.25rem;">📸 อวดมุมสวน / สัตว์เลี้ยงแสนรัก</h3>
+
+      <form onsubmit="handleGallerySubmit(event)">
+        <div class="form-group">
+          <label class="form-label">หมวดหมู่ผลงาน</label>
+          <select id="gal-form-category" class="form-select">
+            <option value="indoor-garden">🌿 มุมจัดสวนในบ้าน (Indoor Garden)</option>
+            <option value="terrarium">🏺 ตู้เทอร์ราเรียม & พืชจิ๋ว (Terrarium)</option>
+            <option value="cute-pets">🐾 สัตว์เลี้ยงกับสวนสวย (Cute Pets)</option>
+            <option value="balcony">🪴 สวนระเบียงคอนโด (Balcony)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ชื่อมุมสวย / ชื่อผลงาน</label>
+          <input type="text" id="gal-form-title" class="form-input" placeholder="เช่น มุมอ่านหนังสือกับเจ้าเหมียวในดงเฟิร์น" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ลิงก์รูปภาพสวยๆ (URL)</label>
+          <input type="url" id="gal-form-image" class="form-input" placeholder="https://images.unsplash.com/photo-..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">เรื่องราวและความประทับใจ</label>
+          <textarea id="gal-form-desc" class="form-textarea" rows="3" placeholder="เล่าถึงแรงบันดาลใจ หรือพันธุ์ไม้ที่ใช้จัดมุมนี้..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">แท็ก (คั่นด้วยจุลภาค)</label>
+          <input type="text" id="gal-form-tags" class="form-input" placeholder="เช่น แมวส้ม, คล้า, ไม้ฟอกอากาศ, มุมโปรด">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('gallery-share-modal')">ยกเลิก</button>
+          <button type="submit" class="btn btn-secondary">แชร์ลงแกลเลอรี</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Add Plant Modal -->
+  <div id="admin-add-plant-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('admin-add-plant-modal')">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.25rem;">🌿 เพิ่มข้อมูลต้นไม้เข้าคลังความรู้ (Admin)</h3>
+
+      <form onsubmit="handleAdminAddPlantSubmit(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">ชื่อภาษาไทย</label>
+            <input type="text" id="adm-p-nameth" class="form-input" placeholder="เช่น ต้นเดหลี" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ชื่อภาษาอังกฤษ</label>
+            <input type="text" id="adm-p-nameen" class="form-input" placeholder="เช่น Peace Lily" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ชื่อวิทยาศาสตร์</label>
+          <input type="text" id="adm-p-sciname" class="form-input" placeholder="เช่น Spathiphyllum cochlearispathum" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">สถานะความปลอดภัย</label>
+            <select id="adm-p-safety" class="form-select">
+              <option value="safe">✓ ปลอดภัย (Pet-Safe)</option>
+              <option value="toxic">⚠️ มีพิษ (Toxic)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ระดับความเป็นพิษ</label>
+            <input type="text" id="adm-p-level" class="form-input" placeholder="เช่น ปานกลาง / รุนแรง / ปลอดภัย" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">คำอธิบายลักษณะ</label>
+          <textarea id="adm-p-desc" class="form-textarea" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">คู่มือการดูแล</label>
+          <textarea id="adm-p-care" class="form-textarea" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">อาการหากสัมผัสหรือกิน</label>
+          <input type="text" id="adm-p-symptoms" class="form-input" placeholder="เช่น ระคายเคืองปาก หรือไม่มีพิษ" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">วิธีปฐมพยาบาล (ถ้ามี)</label>
+          <input type="text" id="adm-p-firstaid" class="form-input" placeholder="เช่น ล้างน้ำสะอาด ป้อนน้ำหวาน">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ลิงก์รูปภาพต้นไม้</label>
+          <input type="url" id="adm-p-img" class="form-input" placeholder="https://images.unsplash.com/photo-...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">แท็ก (คั่นด้วยจุลภาค)</label>
+          <input type="text" id="adm-p-tags" class="form-input" placeholder="ไม้ใบ, ฟอกอากาศ, ในร่ม">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('admin-add-plant-modal')">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกเข้าฐานข้อมูล</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Detail Views Modals -->
+  <div id="listing-detail-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 750px;">
+      <button class="modal-close-btn" onclick="App.closeModal('listing-detail-modal')">✕</button>
+      <div id="listing-detail-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="plant-detail-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 750px;">
+      <button class="modal-close-btn" onclick="App.closeModal('plant-detail-modal')">✕</button>
+      <div id="plant-detail-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="thread-detail-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 750px;">
+      <button class="modal-close-btn" onclick="App.closeModal('thread-detail-modal')">✕</button>
+      <div id="thread-detail-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="lightbox-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 860px;">
+      <button class="modal-close-btn" onclick="App.closeModal('lightbox-modal')">✕</button>
+      <div id="lightbox-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo-brand" style="margin-bottom: 0.75rem;">
+            <div class="logo-icon-wrap">🐾</div>
+            <div class="logo-text">Green<span>Paws</span></div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            ศูนย์รวมสังคมออนไลน์เพื่อคนรักต้นไม้และสัตว์เลี้ยง มุ่งมั่นสร้างสภาพแวดล้อมสีเขียวที่ปลอดภัยและส่งต่อความสุขให้เพื่อนร่วมโลก
+          </p>
+        </div>
+
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">เมนูด่วน</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <a href="#" onclick="App.switchTab('market'); return false;">ลานแลกเปลี่ยน</a>
+            <a href="#" onclick="App.switchTab('knowledge'); return false;">ตรวจความปลอดภัยต้นไม้</a>
+            <a href="#" onclick="App.switchTab('qa'); return false;">กระทู้ถาม-ตอบ (Q&A)</a>
+            <a href="#" onclick="App.switchTab('gallery'); return false;">แกลเลอรีอวดมุมสวย</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">ความปลอดภัย</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <span>✓ ตรวจสอบข้อมูลโดยสัตวแพทย์</span>
+            <span>✓ สายด่วนฉุกเฉินสารพิษสัตว์เลี้ยง</span>
+            <span>✓ ชุมชนปลอดการค้าสัตว์ป่า</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">บัญชีทดสอบ</h4>
+          <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            <div><strong>สมาชิก:</strong> noey@example.com / password123</div>
+            <div style="margin-top: 0.35rem;"><strong>แอดมิน:</strong> admin@greenpaws.com / admin</div>
+            <div style="margin-top: 0.5rem; color: var(--primary);">*มีปุ่ม Demo Login ให้คลิกเข้าสู่ระบบทันที</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 GreenPaws (พฤกษา & เพื่อนรัก). All rights reserved. Made for Plant & Pet lovers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Embedded All-in-One JavaScript (Single-File Application)
+       ======================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. DATA & SEED STORAGE
+       ========================================================================== */
+    const STORAGE_KEYS = {
+      USERS: 'greenpaws_users',
+      CURRENT_USER: 'greenpaws_current_user',
+      LISTINGS: 'greenpaws_listings',
+      PLANTS: 'greenpaws_plants',
+      QA_THREADS: 'greenpaws_qa_threads',
+      GALLERY: 'greenpaws_gallery',
+      BOOKMARKS: 'greenpaws_bookmarks',
+      THEME: 'greenpaws_theme'
+    };
+
+    const DEFAULT_USERS = [
+      {
+        id: 'user-admin',
+        name: 'Admin GreenPaws',
+        email: 'admin@greenpaws.com',
+        password: 'admin',
+        role: 'admin',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+        bio: 'ผู้ดูแลระบบและผู้เชี่ยวชาญด้านพฤกษศาสตร์สำหรับสัตว์เลี้ยง',
+        badge: '👑 ผู้ดูแลระบบ',
+        joinedDate: '2026-01-01'
+      },
+      {
+        id: 'user-1',
+        name: 'น้องเนย & เจ้าถั่วพู (แมวส้ม)',
+        email: 'noey@example.com',
+        password: 'password123',
+        role: 'member',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+        bio: 'ทาสแมวส้ม 2 ตัว ชื่นชอบการปลูกเฟิร์นและไม้ฟอกอากาศที่ไม่เป็นพิษ',
+        badge: '🌿 สมาชิกทาสแมว',
+        joinedDate: '2026-02-15'
+      },
+      {
+        id: 'user-2',
+        name: 'พี่ต้น คนรักป่าชื้น',
+        email: 'ton@example.com',
+        password: 'password123',
+        role: 'member',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+        bio: 'คนทำตู้เทอร์ราเรียมและเพาะพันธุ์ไม้ด่าง พร้อมแลกเปลี่ยนกิ่งพันธุ์',
+        badge: '🏺 นักจัดเทอร์ราเรียม',
+        joinedDate: '2026-02-20'
+      },
+      {
+        id: 'user-3',
+        name: 'หมอโอ สัตวแพทย์รักสวน',
+        email: 'vet.oh@example.com',
+        password: 'password123',
+        role: 'member',
+        avatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80',
+        bio: 'สัตวแพทย์ คอยให้คำแนะนำเกี่ยวกับสารพิษในต้นไม้และการปฐมพยาบาลสัตว์เลี้ยง',
+        badge: '🩺 สัตวแพทย์ที่ปรึกษา',
+        joinedDate: '2026-01-10'
+      }
+    ];
+
+    const DEFAULT_PLANTS = [
+      {
+        id: 'plant-1',
+        nameTh: 'ต้นคล้า (Calathea)',
+        nameEn: 'Calathea (Prayer Plant)',
+        scientificName: 'Calathea orbifolia / zebrina',
+        safetyStatus: 'safe',
+        toxicityLevel: 'ปลอดภัย (Non-Toxic)',
+        safeFor: ['สุนัข', 'แมว', 'นก'],
+        description: 'ไม้ใบสวยลวดลายเอกลักษณ์ ใบจะหุบเวลากลางคืน ปลอดภัย 100% ต่อสัตว์เลี้ยง หากน้องเผลอแทะจะไม่เป็นอันตราย',
+        careGuide: 'ชอบแสงรำไร ไม่ชอบแดดตรง ชอบความชื้นสูง ควรรดน้ำเมื่อหน้าดินเริ่มแห้ง',
+        symptoms: 'ไม่มีพิษ อาจทำให้อาเจียนเล็กน้อยหากกินเส้นใยใบเข้าไปมากเกินไป',
+        tags: ['ไม้ใบฟอกอากาศ', 'ปลอดภัยต่อสัตว์เลี้ยง', 'เลี้ยงในห้องได้'],
+        image: 'https://images.unsplash.com/photo-1599685315640-9ceab2f58944?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-2',
+        nameTh: 'มอนสเตอร่า (Monstera Deliciosa)',
+        nameEn: 'Monstera Deliciosa',
+        scientificName: 'Monstera deliciosa',
+        safetyStatus: 'toxic',
+        toxicityLevel: 'อันตรายปานกลาง (Moderate Toxicity)',
+        description: 'ราชินีไม้ใบยอดนิยม มีผลึกแคลเซียมออกซาเลตที่ระคายเคืองช่องปากและหลอดอาหาร',
+        careGuide: 'ชอบแดดรำไร อากาศถ่ายเท รดน้ำสัปดาห์ละ 1-2 ครั้ง',
+        symptoms: 'น้ำลายไหลยืด ปากและลิ้นบวม ปวดแสบช่องปาก กลืนอาหารลำบาก',
+        firstAid: 'ล้างปากด้วยน้ำสะอาด เช็ดคราบยางออก ให้ดื่มน้ำหรือนมแพะปริมาณเล็กน้อยบรรเทาอาการแสบร้อน',
+        tags: ['ไม้ใบยอดนิยม', 'มีพิษต่อสัตว์เลี้ยง', 'ต้องวางให้พ้นมือน้อง'],
+        image: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-3',
+        nameTh: 'เฟิร์นบอสตัน (Boston Fern)',
+        nameEn: 'Boston Fern',
+        scientificName: 'Nephrolepis exaltata',
+        safetyStatus: 'safe',
+        toxicityLevel: 'ปลอดภัย (Non-Toxic)',
+        description: 'ไม้แขวนฟอกอากาศ ช่วยเพิ่มความชื้นในห้อง เป็นมิตรต่อสัตว์เลี้ยง ปลูกในบ้านได้อย่างสบายใจ',
+        careGuide: 'ชอบความชื้นสูง แดดรำไร พ่นละอองน้ำที่ใบสม่ำเสมอ ระวังอย่าให้ดินแห้งสนิท',
+        symptoms: 'ไม่มีสารพิษ ไม่เป็นอันตรายต่อน้องหมาและน้องแมว',
+        tags: ['ไม้แขวน', 'ฟอกอากาศ', 'ปลอดภัยต่อสัตว์เลี้ยง'],
+        image: 'https://images.unsplash.com/photo-1596724803875-9271a7d6e665?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-4',
+        nameTh: 'กวักมรกต (ZZ Plant)',
+        nameEn: 'ZZ Plant',
+        scientificName: 'Zamioculcas zamiifolia',
+        safetyStatus: 'toxic',
+        toxicityLevel: 'อันตรายปานกลาง (Toxicity: Medium)',
+        description: 'ต้นไม้อึดทน เลี้ยงง่ายมากในร่ม แต่ทุกส่วนของลำต้นและใบมีผลึกแคลเซียมออกซาเลต',
+        careGuide: 'ทนแล้งสูง รดน้ำ 2-3 สัปดาห์ครั้ง อยู่ในที่แสงน้อยได้ดี',
+        symptoms: 'ระคายเคืองช่องปากอย่างรุนแรง น้ำลายไหลมาก อาเจียน ท้องเสีย',
+        firstAid: 'ล้างปากและผิวหนังด้วยน้ำสะอาดทันที สังเกตอาการทางเดินหายใจ',
+        tags: ['เลี้ยงง่าย', 'มีพิษ', 'หลีกเลี่ยงหากเลี้ยงสัตว์'],
+        image: 'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-5',
+        nameTh: 'เปปเปอโรเมียแตงโม (Watermelon Peperomia)',
+        nameEn: 'Watermelon Peperomia',
+        scientificName: 'Peperomia argyreia',
+        safetyStatus: 'safe',
+        toxicityLevel: 'ปลอดภัย (Non-Toxic)',
+        description: 'ลายใบคล้ายแตงโม ขนาดกะทัดรัด เหมาะกับวางบนโต๊ะทำงาน ปลอดภัยต่อน้องแมวและสุนัข 100%',
+        careGuide: 'ชอบแสงสว่างทางอ้อม ไม่ควรรดน้ำแฉะ ดินโปร่งระบายน้ำได้ดี',
+        symptoms: 'ไม่มีพิษ ปลอดภัยหากสัตว์เลี้ยงสัมผัสหรือแทะเล่น',
+        tags: ['ไม้ประดับโต๊ะทำงาน', 'ปลอดภัย', 'พืชอวบน้ำอ่อนๆ'],
+        image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-6',
+        nameTh: 'ลิลลี่ (Lilies ทุกสายพันธุ์)',
+        nameEn: 'True Lilies & Daylilies',
+        scientificName: 'Lilium spp. & Hemerocallis spp.',
+        safetyStatus: 'toxic',
+        toxicityLevel: 'อันตรายถึงชีวิตสำหรับแมว (FATAL TO CATS)',
+        description: '⚠️ อันตรายสูงสุดต่อแมว! แม้แต่ละอองเกสรตกลงบนขนแล้วแมวเลีย หรือน้ำในแจกันลิลลี่ก็ทำให้ไตวายเฉียบพลันถึงแก่ชีวิตได้ภายใน 72 ชั่วโมง!',
+        careGuide: 'บ้านที่เลี้ยงแมวห้ามนำเข้าบ้านในทุกกรณี',
+        symptoms: 'อาเจียน ซึม เบื่ออาหาร ภายใน 2 ชม. และไตวายเฉียบพลัน ไม่ปัสสาวะ ชัก',
+        firstAid: '⚠️ เหตุฉุกเฉินระดับสูงสุด! นำส่ง รพ.สัตว์ 24 ชม. ทันที พร้อมบอกชนิดต้นไม้',
+        tags: ['อันตรายถึงชีวิต', 'ห้ามเลี้ยงเด็ดขาด', 'พิษร้ายแรงในแมว'],
+        image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'plant-7',
+        nameTh: 'ต้นเศรษฐีเรือนใน (Spider Plant)',
+        nameEn: 'Spider Plant',
+        scientificName: 'Chlorophytum comosum',
+        safetyStatus: 'safe',
+        toxicityLevel: 'ปลอดภัย (Non-Toxic & Pet Safe)',
+        description: 'สุดยอดไม้ฟอกอากาศที่ทนทาน ปลอดภัยต่อน้องๆ น้องแมวมักชอบใบที่ห้อยลงมาแกว่งเล่น',
+        careGuide: 'ดูแลง่ายมาก ชอบแสงรำไร ทนต่อการขาดน้ำได้ดี ขยายพันธุ์ง่าย',
+        symptoms: 'ปลอดภัย ไม่เป็นอันตราย',
+        tags: ['ไม้ฟอกอากาศยอดเยี่ยม', 'ปลอดภัย 100%', 'แมวชอบ'],
+        image: 'https://images.unsplash.com/photo-1572688484437-c799a7791630?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    const DEFAULT_LISTINGS = [
+      {
+        id: 'list-1',
+        title: 'มีหน่อต้นคล้า Calathea Orbifolia พร้อมกระถาง อยากแลกกับของเล่นแมวหรือกระบะทราย',
+        type: 'swap',
+        category: 'plants',
+        offering: 'หน่อคล้าใบกลม รากเดินแข็งแรง 2 กระถาง (Pet-Safe ปลอดภัยต่อแมว)',
+        lookingFor: 'ของเล่นแมว คอนโดแมวขนาดเล็ก หรือทรายแมวภูเขาไฟ',
+        location: 'สุขุมวิท 71 / นัดรับ BTS พระโขนง',
+        contact: 'Line: noey_catlover / โทร 081-xxx-xxxx',
+        userId: 'user-1',
+        userName: 'น้องเนย & เจ้าถั่วพู',
+        userAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+        userBadge: '🌿 สมาชิกทาสแมว',
+        status: 'active',
+        isFeatured: true,
+        views: 142,
+        createdAt: '2026-03-01',
+        image: 'https://images.unsplash.com/photo-1599685315640-9ceab2f58944?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'list-2',
+        title: 'แจกฟรีกิ่งชำเปปเปอโรเมียแตงโม 5 กิ่ง และหญ้าแมวสดปลูกเอง',
+        type: 'giveaway',
+        category: 'plants',
+        offering: 'กิ่งชำเปปเปอโรเมียแตงโม รากแน่นๆ + ถาดหญ้าแมวสดพร้อมทาน 1 ถาด',
+        lookingFor: 'แจกฟรีสำหรับเพื่อนๆ ที่เลี้ยงแมว (มารับเองหรือออกค่าส่งตามจริง)',
+        location: 'อารีย์ / พญาไท กทม.',
+        contact: 'Line: @ton_garden',
+        userId: 'user-2',
+        userName: 'พี่ต้น คนรักป่าชื้น',
+        userAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+        userBadge: '🏺 นักจัดเทอร์ราเรียม',
+        status: 'active',
+        isFeatured: false,
+        views: 98,
+        createdAt: '2026-03-03',
+        image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'list-3',
+        title: 'ส่งต่อกรงสัตว์เลี้ยงพับได้ สภาพ 95% อยากแลกกับต้นเฟิร์นข้าหลวงหรือต้นวาสนา',
+        type: 'swap',
+        category: 'gear',
+        offering: 'กรงสัตว์เลี้ยงพับได้ ขนาด 80x60 ซม. ล้างฆ่าเชื้อเรียบร้อย มีถาดรอง',
+        lookingFor: 'ต้นเฟิร์นข้าหลวงกอใหญ่ หรือไม้ฟอกอากาศที่ปลอดภัยกับน้องกระต่าย',
+        location: 'นนทบุรี / บางใหญ่ / ถนนกาญจนาภิเษก',
+        contact: 'Line: bunny_home99',
+        userId: 'user-3',
+        userName: 'หมอโอ สัตวแพทย์รักสวน',
+        userAvatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80',
+        userBadge: '🩺 สัตวแพทย์ที่ปรึกษา',
+        status: 'active',
+        isFeatured: true,
+        views: 215,
+        createdAt: '2026-03-05',
+        image: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'list-4',
+        title: 'หาบ้านใหม่ให้น้องลูกแมวส้ม 2 ตัว วัย 2 เดือน ปลูกต้นหญ้าแมวแถมให้ด้วย',
+        type: 'giveaway',
+        category: 'pets',
+        offering: 'ลูกแมวเพศผู้ 1 เพศเมีย 1 กินอาหารเม็ดได้แล้ว เข้ากระบะทรายเป็น',
+        lookingFor: 'ขอคนรักสัตว์จริง เลี้ยงระบบปิด และพร้อมดูแลตลอดอายุขัย',
+        location: 'ลาดพร้าว / เกษตรนวมินทร์',
+        contact: 'FB: Noey Adoptions / 089-xxx-xxxx',
+        userId: 'user-1',
+        userName: 'น้องเนย & เจ้าถั่วพู',
+        userAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+        userBadge: '🌿 สมาชิกทาสแมว',
+        status: 'active',
+        isFeatured: true,
+        views: 340,
+        createdAt: '2026-03-06',
+        image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    const DEFAULT_QA_THREADS = [
+      {
+        id: 'qa-1',
+        title: 'น้องแมวเผลอไปแทะใบมอนสเตอร่าแหว่งไปนิดนึง มีอาการน้ำลายไหล ทำอย่างไรดีครับ?',
+        category: 'toxic-emergency',
+        categoryLabel: '🚨 สารพิษ & อาการฉุกเฉิน',
+        content: 'เมื่อ 20 นาทีที่แล้ว เห็นน้องแมวเดินไปเคี้ยวปลายใบมอนสเตอร่า ตอนนี้เห็นน้องเริ่มเลียริมฝีปากบ่อยๆ และมีน้ำลายไหลยืดเล็กน้อย ควรปฐมพยาบาลเบื้องต้นยังไงดีครับ?',
+        authorId: 'user-2',
+        authorName: 'พี่ต้น คนรักป่าชื้น',
+        authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+        createdAt: '2026-03-04 10:30',
+        solved: true,
+        solutionId: 'ans-1',
+        answers: [
+          {
+            id: 'ans-1',
+            authorId: 'user-3',
+            authorName: 'หมอโอ สัตวแพทย์รักสวน',
+            authorAvatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80',
+            authorBadge: '🩺 สัตวแพทย์ที่ปรึกษา',
+            isSolution: true,
+            createdAt: '2026-03-04 10:45',
+            content: `**แนวทางปฏิบัติทันทีครับ:**\n1. ใช้ผ้าชุบน้ำสะอาดเช็ดรอบปากและลิ้นเพื่อขจัดเศษยางและผลึกออกซาเลต\n2. ป้อนน้ำสะอาดหรือโยเกิร์ต/นมแพะ 1 ช้อนชา เพื่อช่วยเคลือบและเจือจางผลึก\n3. **ห้ามทำให้อาเจียนเด็ดขาด** เพราะผลึกจะขูดหลอดอาหารรอบสอง\n4. สังเกตอาการทางเดินหายใจ หากลิ้นบวมมากจนหายใจติดขัด ให้นำส่งคลินิกสัตว์ทันทีครับ`
+          },
+          {
+            id: 'ans-2',
+            authorId: 'user-1',
+            authorName: 'น้องเนย & เจ้าถั่วพู',
+            authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+            authorBadge: '🌿 สมาชิกทาสแมว',
+            isSolution: false,
+            createdAt: '2026-03-04 11:10',
+            content: 'ที่บ้านเคยโดนเหมือนกันค่ะ ตอนนั้นหมอให้เช็ดปากแล้วป้อนน้ำหวาน/นมแพะ อาการดีขึ้นใน 3-4 ชม. เป็นกำลังใจให้นะคะ'
+          }
+        ]
+      },
+      {
+        id: 'qa-2',
+        title: 'ต้นเศรษฐีเรือนในใบไหม้ที่ปลาย เกิดจากอะไร และเป็นอันตรายต่อนกแก้วไหม?',
+        category: 'plant-health',
+        categoryLabel: '🌿 สุขภาพต้นไม้ & สัตว์เลี้ยง',
+        content: 'เลี้ยงต้นเศรษฐีเรือนในไว้ใกล้กรงนกแก้วฟอร์พัส สังเกตว่าช่วงนี้ปลายใบมีรอยไหม้สีน้ำตาล อยากรู้ว่าเกิดจากอะไร และถ้าปล่อยนกออกมาเกาะเล่น จะมีอันตรายต่อนกไหมครับ?',
+        authorId: 'user-1',
+        authorName: 'น้องเนย & เจ้าถั่วพู',
+        authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+        createdAt: '2026-03-05 14:15',
+        solved: true,
+        solutionId: 'ans-3',
+        answers: [
+          {
+            id: 'ans-3',
+            authorId: 'user-admin',
+            authorName: 'Admin GreenPaws',
+            authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+            authorBadge: '👑 ผู้ดูแลระบบ',
+            isSolution: true,
+            createdAt: '2026-03-05 14:40',
+            content: `**สาเหตุและคำแนะนำครับ:**\n1. ปลายใบไหม้ มักเกิดจาก **คลอรีนในน้ำประปา** ให้ใช้น้ำกรองหรือน้ำที่พักทิ้งไว้ 24-48 ชม.\n2. ต้นเศรษฐีเรือนใน **ปลอดภัยต่อนกแก้วและสัตว์เลี้ยง 100% (Non-toxic)** นกสามารถแทะเล่นได้ไม่เป็นพิษครับ`
+          }
+        ]
+      }
+    ];
+
+    const DEFAULT_GALLERY = [
+      {
+        id: 'gal-1',
+        title: 'มุมกาแฟข้างหน้าต่างกับตู้ไม้น้ำและน้องแมวการ์ฟิลด์',
+        category: 'cute-pets',
+        categoryLabel: '🐾 สัตว์เลี้ยงกับสวนสวย',
+        image: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=800&q=80',
+        description: 'จัดมุมนี้เพื่อให้ได้รับแสงเช้า น้องแมวชอบมานอนอาบแดดข้างๆ กระถางเปปเปอโรเมียและตู้ปลา สบายตาทั้งวันเลยค่ะ',
+        tags: ['แมวส้ม', 'เปปเปอโรเมีย', 'สวนมุมโปรด', 'PetSafe'],
+        authorId: 'user-1',
+        authorName: 'น้องเนย & เจ้าถั่วพู',
+        authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+        likes: 84,
+        likedBy: ['user-2', 'user-3'],
+        createdAt: '2026-03-02'
+      },
+      {
+        id: 'gal-2',
+        title: 'ตู้เทอร์ราเรียมมอสสดและหินภูเขาไฟ เลียนแบบป่าดิบชื้น',
+        category: 'terrarium',
+        categoryLabel: '🏺 ตู้เทอร์ราเรียม & พืชจิ๋ว',
+        image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80',
+        description: 'ใช้เวลาจัดเกือบ 4 ชั่วโมง เลเยอร์ชั้นล่างเป็นเม็ดดินเผา ถ่านชาโคล และมอสขนนก ปิดฝาไว้แทบไม่ต้องรดน้ำเลยครับ',
+        tags: ['เทอร์ราเรียม', 'มอสสด', 'Bioactive', 'ตู้กระจก'],
+        authorId: 'user-2',
+        authorName: 'พี่ต้น คนรักป่าชื้น',
+        authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+        likes: 126,
+        likedBy: ['user-1', 'user-admin'],
+        createdAt: '2026-03-03'
+      },
+      {
+        id: 'gal-3',
+        title: 'มุมฟอกอากาศในห้องนั่งเล่น เน้นต้นไม้ปลอดภัยสำหรับน้องหมาคอร์กี้',
+        category: 'indoor-garden',
+        categoryLabel: '🌿 มุมจัดสวนในบ้าน',
+        image: 'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=800&q=80',
+        description: 'คัดเลือกเฉพาะ Calathea, Boston Fern และ Spider Plant ทั้งหมดวางบนชั้นยกสูง น้องคอร์กี้วิ่งเล่นได้ปลอดภัย',
+        tags: ['ห้องนั่งเล่นสีเขียว', 'คอร์กี้', 'BostonFern', 'SafePlants'],
+        authorId: 'user-3',
+        authorName: 'หมอโอ สัตวแพทย์รักสวน',
+        authorAvatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80',
+        likes: 92,
+        likedBy: ['user-1'],
+        createdAt: '2026-03-04'
+      }
+    ];
+
+    function initLocalStorage() {
+      if (!localStorage.getItem(STORAGE_KEYS.USERS)) localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(DEFAULT_USERS));
+      if (!localStorage.getItem(STORAGE_KEYS.PLANTS)) localStorage.setItem(STORAGE_KEYS.PLANTS, JSON.stringify(DEFAULT_PLANTS));
+      if (!localStorage.getItem(STORAGE_KEYS.LISTINGS)) localStorage.setItem(STORAGE_KEYS.LISTINGS, JSON.stringify(DEFAULT_LISTINGS));
+      if (!localStorage.getItem(STORAGE_KEYS.QA_THREADS)) localStorage.setItem(STORAGE_KEYS.QA_THREADS, JSON.stringify(DEFAULT_QA_THREADS));
+      if (!localStorage.getItem(STORAGE_KEYS.GALLERY)) localStorage.setItem(STORAGE_KEYS.GALLERY, JSON.stringify(DEFAULT_GALLERY));
+      if (!localStorage.getItem(STORAGE_KEYS.BOOKMARKS)) localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(['list-1']));
+    }
+    initLocalStorage();
+
+    /* ==========================================================================
+       2. AUTHENTICATION (auth.js)
+       ========================================================================== */
+    const Auth = {
+      getCurrentUser() {
+        const userJson = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+        return userJson ? JSON.parse(userJson) : null;
+      },
+      getAllUsers() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+      },
+      isAdmin() {
+        const user = this.getCurrentUser();
+        return user && user.role === 'admin';
+      },
+      register(userData) {
+        const users = this.getAllUsers();
+        if (users.some(u => u.email.toLowerCase() === userData.email.toLowerCase())) {
+          throw new Error('อีเมลนี้ถูกใช้งานในระบบแล้ว');
+        }
+        const newUser = {
+          id: 'user-' + Date.now(),
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          role: 'member',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+          bio: 'คนรักต้นไม้และสัตว์เลี้ยง',
+          badge: userData.petOrPlantType ? `🌿 ${userData.petOrPlantType}` : '🌿 สมาชิกใหม่',
+          joinedDate: new Date().toISOString().split('T')[0]
+        };
+        users.push(newUser);
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+        this.setCurrentUser(newUser);
+        return newUser;
+      },
+      login(email, password) {
+        const users = this.getAllUsers();
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+        if (!user) throw new Error('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+        this.setCurrentUser(user);
+        return user;
+      },
+      demoLogin(role = 'member') {
+        const users = this.getAllUsers();
+        const targetUser = role === 'admin' ? users.find(u => u.role === 'admin') : users.find(u => u.role === 'member');
+        if (targetUser) {
+          this.setCurrentUser(targetUser);
+          return targetUser;
+        }
+      },
+      setCurrentUser(user) {
+        const safeUser = { ...user };
+        delete safeUser.password;
+        localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(safeUser));
+        this.updateHeaderUI();
+      },
+      logout() {
+        localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+        this.updateHeaderUI();
+      },
+      updateHeaderUI() {
+        const user = this.getCurrentUser();
+        const guestArea = document.getElementById('header-guest-actions');
+        const userArea = document.getElementById('header-user-actions');
+        const adminNavBtn = document.getElementById('nav-admin-tab-btn');
+        if (!guestArea || !userArea) return;
+
+        if (user) {
+          guestArea.style.display = 'none';
+          userArea.style.display = 'flex';
+          document.getElementById('user-display-name').textContent = user.name;
+          document.getElementById('user-display-avatar').src = user.avatar;
+          const badgeElem = document.getElementById('user-display-badge');
+          if (badgeElem) {
+            badgeElem.textContent = user.badge;
+            badgeElem.className = user.role === 'admin' ? 'badge badge-admin' : 'badge badge-swap';
+          }
+          if (adminNavBtn) adminNavBtn.style.display = user.role === 'admin' ? 'inline-flex' : 'none';
+        } else {
+          guestArea.style.display = 'flex';
+          userArea.style.display = 'none';
+          if (adminNavBtn) adminNavBtn.style.display = 'none';
+        }
+      },
+      requireAuth(callback, requiredRole = 'member') {
+        const user = this.getCurrentUser();
+        if (!user) {
+          App.showToast('กรุณาเข้าสู่ระบบก่อนดำเนินการ', 'info');
+          App.openModal('auth-modal');
+          return false;
+        }
+        if (requiredRole === 'admin' && user.role !== 'admin') {
+          App.showToast('หน้านี้สงวนสิทธิ์เฉพาะผู้ดูแลระบบเท่านั้น', 'error');
+          return false;
+        }
+        if (typeof callback === 'function') callback(user);
+        return true;
+      }
+    };
+
+    /* ==========================================================================
+       3. Q&A FORUM WITH SOLUTION TAG (qa.js)
+       ========================================================================== */
+    const QA = {
+      currentFilter: 'all',
+      getThreads() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.QA_THREADS) || '[]'); },
+      saveThreads(threads) {
+        localStorage.setItem(STORAGE_KEYS.QA_THREADS, JSON.stringify(threads));
+        this.renderThreads();
+      },
+      renderThreads() {
+        const container = document.getElementById('qa-threads-container');
+        if (!container) return;
+        let threads = this.getThreads();
+        if (this.currentFilter === 'solved') threads = threads.filter(t => t.solved);
+        else if (this.currentFilter === 'unsolved') threads = threads.filter(t => !t.solved);
+
+        if (threads.length === 0) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); background: var(--bg-surface); border-radius: var(--radius-md);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+              <h3>ไม่พบกระทู้ในหมวดหมู่นี้</h3>
+              <p>คุณสามารถเริ่มต้นตั้งคำถามเพื่อขอความช่วยเหลือจากเพื่อนสมาชิกได้เลย</p>
+              <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="QA.openAskModal()">+ ตั้งกระทู้ถามปัญหา</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = threads.map(thread => {
+          const solution = thread.answers.find(a => a.id === thread.solutionId);
+          const isSolved = thread.solved;
+          return `
+            <article class="qa-thread-card ${isSolved ? 'is-solved' : ''}">
+              <div class="qa-header-row">
+                <div class="qa-tags-wrap">
+                  <span class="badge ${isSolved ? 'badge-solution' : 'badge-giveaway'}">
+                    ${isSolved ? '✓ แก้ปัญหาได้แล้ว (Solved)' : '⏳ รอคำตอบ (Open)'}
+                  </span>
+                  <span class="badge" style="background-color: var(--primary-surface); color: var(--primary);">
+                    ${thread.categoryLabel}
+                  </span>
+                </div>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">🕒 ${thread.createdAt}</span>
+              </div>
+
+              <h3 class="qa-title" onclick="QA.openThreadModal('${thread.id}')">${thread.title}</h3>
+              <p class="qa-content-preview">${thread.content.length > 180 ? thread.content.substring(0, 180) + '...' : thread.content}</p>
+
+              ${isSolved && solution ? `
+                <div class="verified-solution-highlight">
+                  <div class="solution-header">
+                    <div class="solution-badge-mark"><span>✓</span> วิธีแก้ปัญหาที่ยืนยันแล้ว โดย ${solution.authorName}</div>
+                    ${solution.authorBadge ? `<span class="badge badge-admin" style="font-size: 0.72rem;">${solution.authorBadge}</span>` : ''}
+                  </div>
+                  <div class="solution-body">${solution.content.replace(/\n/g, '<br>')}</div>
+                </div>
+              ` : ''}
+
+              <div class="qa-footer-meta">
+                <div class="listing-author">
+                  <img src="${thread.authorAvatar}" alt="${thread.authorName}">
+                  <span>โดย <strong>${thread.authorName}</strong></span>
+                </div>
+                <div style="display: flex; gap: 0.75rem; align-items: center;">
+                  <span>💬 ${thread.answers.length} คำตอบ</span>
+                  <button class="btn btn-outline btn-sm" onclick="QA.openThreadModal('${thread.id}')">ดูรายละเอียด / ตอบกระทู้</button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      },
+      setFilter(filter) {
+        this.currentFilter = filter;
+        document.querySelectorAll('#qa-filters .filter-pill').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+        this.renderThreads();
+      },
+      openAskModal() {
+        Auth.requireAuth(() => App.openModal('qa-ask-modal'));
+      },
+      createThread(data) {
+        const user = Auth.getCurrentUser();
+        if (!user) return;
+        const threads = this.getThreads();
+        threads.unshift({
+          id: 'qa-' + Date.now(),
+          title: data.title,
+          category: data.category,
+          categoryLabel: data.categoryLabel,
+          content: data.content,
+          authorId: user.id,
+          authorName: user.name,
+          authorAvatar: user.avatar,
+          createdAt: new Date().toLocaleString('th-TH', { dateStyle: 'short', timeStyle: 'short' }),
+          solved: false,
+          solutionId: null,
+          answers: []
+        });
+        this.saveThreads(threads);
+        App.closeModal('qa-ask-modal');
+        App.showToast('ตั้งกระทู้ถามปัญหาเรียบร้อยแล้ว!', 'success');
+      },
+      openThreadModal(threadId) {
+        const thread = this.getThreads().find(t => t.id === threadId);
+        if (!thread) return;
+        const currentUser = Auth.getCurrentUser();
+        const isThreadOwner = currentUser && (currentUser.id === thread.authorId || currentUser.role === 'admin');
+        const modalContent = document.getElementById('thread-detail-modal-body');
+        if (!modalContent) return;
+
+        modalContent.innerHTML = `
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span class="badge ${thread.solved ? 'badge-solution' : 'badge-giveaway'}">
+                ${thread.solved ? '✓ แก้ปัญหาได้แล้ว' : '⏳ รอคำตอบ'}
+              </span>
+              <span class="badge" style="background: var(--primary-surface); color: var(--primary);">${thread.categoryLabel}</span>
+            </div>
+            <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">${thread.title}</h2>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; font-size: 0.85rem; color: var(--text-muted);">
+              <img src="${thread.authorAvatar}" style="width: 28px; height: 28px; border-radius: 50%;">
+              <span>โพสต์โดย <strong>${thread.authorName}</strong> • ${thread.createdAt}</span>
+            </div>
+            <div style="background: var(--bg-page); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); line-height: 1.7; font-size: 0.95rem;">
+              ${thread.content.replace(/\n/g, '<br>')}
+            </div>
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">💬 คำตอบและการพูดคุย (${thread.answers.length})</h3>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+            ${thread.answers.length === 0 ? `
+              <p style="color: var(--text-muted); text-align: center; padding: 2rem;">ยังไม่มีคำตอบ ร่วมเป็นคนแรกที่ช่วยเหลือเพื่อนสมาชิกได้เลย!</p>
+            ` : thread.answers.map(ans => {
+              const isMarkedSolution = ans.id === thread.solutionId;
+              return `
+                <div style="background: ${isMarkedSolution ? 'var(--primary-surface)' : 'var(--bg-surface)'}; border: ${isMarkedSolution ? '2px solid var(--safe)' : '1px solid var(--border-color)'}; border-radius: var(--radius-md); padding: 1.2rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <img src="${ans.authorAvatar}" style="width: 30px; height: 30px; border-radius: 50%;">
+                      <strong>${ans.authorName}</strong>
+                      ${ans.authorBadge ? `<span class="badge badge-admin" style="font-size: 0.7rem;">${ans.authorBadge}</span>` : ''}
+                      <span style="font-size: 0.78rem; color: var(--text-muted);">${ans.createdAt}</span>
+                    </div>
+
+                    ${isMarkedSolution ? `
+                      <span class="badge badge-solution">✓ วิธีแก้ปัญหาที่ยืนยันแล้ว</span>
+                    ` : (isThreadOwner ? `
+                      <button class="btn btn-outline btn-sm" onclick="QA.markSolution('${thread.id}', '${ans.id}')" style="font-size: 0.78rem; border-color: var(--safe); color: var(--safe);">
+                        ✓ เลือกเป็นคำตอบที่แก้ปัญหาได้
+                      </button>
+                    ` : '')}
+                  </div>
+                  <div style="font-size: 0.92rem; line-height: 1.6;">${ans.content.replace(/\n/g, '<br>')}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-weight: 700; margin-bottom: 0.75rem;">เขียนคำตอบหรือข้อแนะนำของคุณ</h4>
+            <textarea id="qa-answer-input" class="form-textarea" rows="3" placeholder="แชร์ความรู้หรือวิธีแก้ไขปัญหาของคุณอย่างสุภาพ..."></textarea>
+            <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem;">
+              <button class="btn btn-primary" onclick="QA.submitAnswer('${thread.id}')">ส่งคำตอบ</button>
+            </div>
+          </div>
+        `;
+        App.openModal('thread-detail-modal');
+      },
+      submitAnswer(threadId) {
+        Auth.requireAuth(user => {
+          const input = document.getElementById('qa-answer-input');
+          const text = input ? input.value.trim() : '';
+          if (!text) { App.showToast('กรุณากรอกคำตอบก่อนส่ง', 'error'); return; }
+          const threads = this.getThreads();
+          const thread = threads.find(t => t.id === threadId);
+          if (!thread) return;
+
+          thread.answers.push({
+            id: 'ans-' + Date.now(),
+            authorId: user.id,
+            authorName: user.name,
+            authorAvatar: user.avatar,
+            authorBadge: user.badge,
+            isSolution: false,
+            createdAt: new Date().toLocaleString('th-TH', { dateStyle: 'short', timeStyle: 'short' }),
+            content: text
+          });
+          this.saveThreads(threads);
+          App.showToast('ส่งคำตอบเรียบร้อยแล้ว!', 'success');
+          this.openThreadModal(threadId);
+        });
+      },
+      markSolution(threadId, answerId) {
+        const threads = this.getThreads();
+        const thread = threads.find(t => t.id === threadId);
+        if (!thread) return;
+        thread.solved = true;
+        thread.solutionId = answerId;
+        thread.answers.forEach(a => a.isSolution = (a.id === answerId));
+        this.saveThreads(threads);
+        App.showToast('เลือกคำตอบที่แก้ปัญหาได้เรียบร้อยแล้ว!', 'success');
+        this.openThreadModal(threadId);
+      }
+    };
+
+    /* ==========================================================================
+       4. SHOWCASE GALLERY (gallery.js)
+       ========================================================================== */
+    const Gallery = {
+      currentCategory: 'all',
+      getItems() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.GALLERY) || '[]'); },
+      saveItems(items) {
+        localStorage.setItem(STORAGE_KEYS.GALLERY, JSON.stringify(items));
+        this.renderGallery();
+      },
+      renderGallery() {
+        const container = document.getElementById('gallery-masonry-container');
+        if (!container) return;
+        let items = this.getItems();
+        const currentUser = Auth.getCurrentUser();
+        if (this.currentCategory !== 'all') items = items.filter(item => item.category === this.currentCategory);
+
+        if (items.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--text-muted); background: var(--bg-surface); border-radius: var(--radius-md);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">📸</div>
+              <h3>ยังไม่มีรูปภาพในหมวดหมู่นี้</h3>
+              <p>ร่วมเป็นคนแรกที่แชร์มุมโปรดให้ชุมชนได้รับชม</p>
+              <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="Gallery.openShareModal()">+ อวดมุมโปรดของคุณ</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = items.map(item => {
+          const isLiked = currentUser && item.likedBy && item.likedBy.includes(currentUser.id);
+          return `
+            <div class="gallery-card">
+              <div class="gallery-img-container" onclick="Gallery.openLightbox('${item.id}')">
+                <span class="badge gallery-overlay-badge" style="background: rgba(0,0,0,0.65); color: #fff; backdrop-filter: blur(4px);">
+                  ${item.categoryLabel}
+                </span>
+                <img src="${item.image}" alt="${item.title}" loading="lazy">
+              </div>
+              <div class="gallery-body">
+                <h4 class="gallery-title" onclick="Gallery.openLightbox('${item.id}')" style="cursor: pointer;">${item.title}</h4>
+                <p class="gallery-caption">${item.description}</p>
+                <div class="gallery-tags-row">
+                  ${(item.tags || []).map(tag => `<span class="gallery-tag-pill">#${tag}</span>`).join('')}
+                </div>
+                <div class="gallery-footer">
+                  <div class="listing-author">
+                    <img src="${item.authorAvatar}" alt="${item.authorName}">
+                    <span><strong>${item.authorName}</strong></span>
+                  </div>
+                  <button class="like-button ${isLiked ? 'liked' : ''}" onclick="Gallery.toggleLike('${item.id}', event)">
+                    <span class="heart-icon">${isLiked ? '❤️' : '🤍'}</span>
+                    <span>${item.likes || 0}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+      setCategory(cat) {
+        this.currentCategory = cat;
+        document.querySelectorAll('#gallery-filters .filter-pill').forEach(btn => btn.classList.toggle('active', btn.dataset.category === cat));
+        this.renderGallery();
+      },
+      toggleLike(itemId, e) {
+        if (e) e.stopPropagation();
+        Auth.requireAuth(user => {
+          const items = this.getItems();
+          const item = items.find(i => i.id === itemId);
+          if (!item) return;
+          if (!item.likedBy) item.likedBy = [];
+          const userIdx = item.likedBy.indexOf(user.id);
+          if (userIdx > -1) {
+            item.likedBy.splice(userIdx, 1);
+            item.likes = Math.max(0, (item.likes || 1) - 1);
+          } else {
+            item.likedBy.push(user.id);
+            item.likes = (item.likes || 0) + 1;
+          }
+          this.saveItems(items);
+        });
+      },
+      openLightbox(itemId) {
+        const item = this.getItems().find(i => i.id === itemId);
+        if (!item) return;
+        const modalBody = document.getElementById('lightbox-modal-body');
+        if (!modalBody) return;
+        modalBody.innerHTML = `
+          <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+            <div style="border-radius: var(--radius-md); overflow: hidden; max-height: 520px;">
+              <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                  <img src="${item.authorAvatar}" style="width: 40px; height: 40px; border-radius: 50%;">
+                  <div>
+                    <h4 style="font-size: 1rem; font-weight: 700;">${item.authorName}</h4>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">แชร์เมื่อ ${item.createdAt}</span>
+                  </div>
+                </div>
+                <span class="badge" style="background: var(--primary-surface); color: var(--primary); margin-bottom: 0.75rem;">${item.categoryLabel}</span>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem;">${item.title}</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.25rem;">${item.description}</p>
+                <div class="gallery-tags-row">
+                  ${(item.tags || []).map(t => `<span class="gallery-tag-pill">#${t}</span>`).join('')}
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <button class="btn btn-outline" onclick="Gallery.toggleLike('${item.id}'); Gallery.openLightbox('${item.id}');">
+                  ❤️ ถูกใจ (${item.likes || 0})
+                </button>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">✨ ภาพยอดนิยมใน GreenPaws</span>
+              </div>
+            </div>
+          </div>
+        `;
+        App.openModal('lightbox-modal');
+      },
+      openShareModal() {
+        Auth.requireAuth(() => App.openModal('gallery-share-modal'));
+      },
+      createShowcase(data) {
+        const user = Auth.getCurrentUser();
+        if (!user) return;
+        const items = this.getItems();
+        items.unshift({
+          id: 'gal-' + Date.now(),
+          title: data.title,
+          category: data.category,
+          categoryLabel: data.categoryLabel,
+          image: data.image || 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=800&q=80',
+          description: data.description,
+          tags: data.tags.split(',').map(t => t.trim()).filter(Boolean),
+          authorId: user.id,
+          authorName: user.name,
+          authorAvatar: user.avatar,
+          likes: 1,
+          likedBy: [user.id],
+          createdAt: new Date().toISOString().split('T')[0]
+        });
+        this.saveItems(items);
+        App.closeModal('gallery-share-modal');
+        App.showToast('อวดมุมสวยของคุณเรียบร้อยแล้ว!', 'success');
+      }
+    };
+
+    /* ==========================================================================
+       5. ADMIN MANAGEMENT (admin.js)
+       ========================================================================== */
+    const Admin = {
+      currentSubTab: 'listings',
+      renderStats() {
+        const users = Auth.getAllUsers();
+        const listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        const plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+        const threads = QA.getThreads();
+        const statsGrid = document.getElementById('admin-stats-grid');
+        if (!statsGrid) return;
+        statsGrid.innerHTML = `
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">👥</div>
+            <div>
+              <div style="font-size: 1.75rem; font-weight: 800;">${users.length}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">สมาชิกทั้งหมด</div>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon" style="background: var(--primary-surface); color: var(--primary);">🔄</div>
+            <div>
+              <div style="font-size: 1.75rem; font-weight: 800;">${listings.length}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">ประกาศแลกเปลี่ยน</div>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">🌿</div>
+            <div>
+              <div style="font-size: 1.75rem; font-weight: 800;">${plants.length}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">ต้นไม้ในฐานข้อมูล</div>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">💬</div>
+            <div>
+              <div style="font-size: 1.75rem; font-weight: 800;">${threads.length}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">กระทู้ถาม-ตอบ</div>
+            </div>
+          </div>
+        `;
+      },
+      switchSubTab(tabName) {
+        this.currentSubTab = tabName;
+        document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.subtab === tabName));
+        document.getElementById('admin-listings-panel').style.display = tabName === 'listings' ? 'block' : 'none';
+        document.getElementById('admin-plants-panel').style.display = tabName === 'plants' ? 'block' : 'none';
+        document.getElementById('admin-users-panel').style.display = tabName === 'users' ? 'block' : 'none';
+
+        if (tabName === 'listings') this.renderListingsTable();
+        if (tabName === 'plants') this.renderPlantsTable();
+        if (tabName === 'users') this.renderUsersTable();
+      },
+      renderListingsTable() {
+        const tableBody = document.getElementById('admin-listings-table-body');
+        if (!tableBody) return;
+        const listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        tableBody.innerHTML = listings.map(item => `
+          <tr>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="${item.image}" style="width: 44px; height: 44px; border-radius: 6px;">
+                <div>
+                  <strong>${item.title.substring(0, 45)}...</strong>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">โดย: ${item.userName}</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge ${item.type === 'swap' ? 'badge-swap' : 'badge-giveaway'}">${item.type === 'swap' ? 'แลกเปลี่ยน' : 'ส่งต่อฟรี'}</span></td>
+            <td><span class="badge ${item.status === 'active' ? 'badge-safe' : 'badge-toxic'}">${item.status === 'active' ? 'กำลังดำเนินการ' : 'สำเร็จแล้ว'}</span></td>
+            <td>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-outline btn-sm" onclick="Admin.toggleFeatured('${item.id}')">${item.isFeatured ? '⭐ เลิกปักหมุด' : '☆ ปักหมุด'}</button>
+                <button class="btn btn-sm" style="background: var(--danger-light); color: var(--danger);" onclick="Admin.deleteListing('${item.id}')">ลบ</button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      },
+      deleteListing(id) {
+        if (!confirm('ต้องการลบประกาศนี้หรือไม่?')) return;
+        let listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        listings = listings.filter(l => l.id !== id);
+        localStorage.setItem(STORAGE_KEYS.LISTINGS, JSON.stringify(listings));
+        App.showToast('ลบประกาศเรียบร้อยแล้ว', 'info');
+        this.renderStats();
+        this.renderListingsTable();
+        App.renderMarketplace();
+      },
+      toggleFeatured(id) {
+        let listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        const item = listings.find(l => l.id === id);
+        if (item) {
+          item.isFeatured = !item.isFeatured;
+          localStorage.setItem(STORAGE_KEYS.LISTINGS, JSON.stringify(listings));
+          App.showToast(item.isFeatured ? 'ปักหมุดประกาศสำเร็จ' : 'ยกเลิกการปักหมุดสำเร็จ', 'success');
+          this.renderListingsTable();
+          App.renderMarketplace();
+        }
+      },
+      renderPlantsTable() {
+        const tableBody = document.getElementById('admin-plants-table-body');
+        if (!tableBody) return;
+        const plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+        tableBody.innerHTML = plants.map(plant => `
+          <tr>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="${plant.image}" style="width: 40px; height: 40px; border-radius: 6px;">
+                <div>
+                  <strong>${plant.nameTh}</strong>
+                  <div style="font-size: 0.75rem; font-style: italic; color: var(--text-muted);">${plant.scientificName}</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge ${plant.safetyStatus === 'safe' ? 'badge-safe' : 'badge-toxic'}">${plant.safetyStatus === 'safe' ? '✓ ปลอดภัย' : '⚠️ มีพิษ'}</span></td>
+            <td style="font-size: 0.85rem;">${plant.toxicityLevel}</td>
+            <td><button class="btn btn-sm" style="background: var(--danger-light); color: var(--danger);" onclick="Admin.deletePlant('${plant.id}')">ลบข้อมูล</button></td>
+          </tr>
+        `).join('');
+      },
+      addPlant(plantData) {
+        const plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+        plants.push({
+          id: 'plant-' + Date.now(),
+          nameTh: plantData.nameTh,
+          nameEn: plantData.nameEn,
+          scientificName: plantData.scientificName,
+          safetyStatus: plantData.safetyStatus,
+          toxicityLevel: plantData.toxicityLevel,
+          description: plantData.description,
+          careGuide: plantData.careGuide,
+          symptoms: plantData.symptoms,
+          firstAid: plantData.firstAid || '',
+          tags: plantData.tags.split(',').map(t => t.trim()).filter(Boolean),
+          image: plantData.image || 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=600&q=80'
+        });
+        localStorage.setItem(STORAGE_KEYS.PLANTS, JSON.stringify(plants));
+        App.showToast('เพิ่มต้นไม้เข้าสู่คลังความรู้เรียบร้อยแล้ว!', 'success');
+        this.renderStats();
+        this.renderPlantsTable();
+        App.renderPlantDirectory();
+      },
+      deletePlant(id) {
+        if (!confirm('ยืนยันลบข้อมูลต้นไม้นี้?')) return;
+        let plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+        plants = plants.filter(p => p.id !== id);
+        localStorage.setItem(STORAGE_KEYS.PLANTS, JSON.stringify(plants));
+        App.showToast('ลบข้อมูลต้นไม้เรียบร้อยแล้ว', 'info');
+        this.renderStats();
+        this.renderPlantsTable();
+        App.renderPlantDirectory();
+      },
+      renderUsersTable() {
+        const tableBody = document.getElementById('admin-users-table-body');
+        if (!tableBody) return;
+        const users = Auth.getAllUsers();
+        tableBody.innerHTML = users.map(u => `
+          <tr>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="${u.avatar}" style="width: 36px; height: 36px; border-radius: 50%;">
+                <div>
+                  <strong>${u.name}</strong>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">${u.email}</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge ${u.role === 'admin' ? 'badge-admin' : 'badge-swap'}">${u.role === 'admin' ? '👑 ผู้ดูแลระบบ' : 'สมาชิกทั่วไป'}</span></td>
+            <td><span class="badge" style="background: var(--bg-page);">${u.badge || '-'}</span></td>
+            <td style="font-size: 0.85rem; color: var(--text-muted);">${u.joinedDate}</td>
+          </tr>
+        `).join('');
+      }
+    };
+
+    /* ==========================================================================
+       6. MASTER APP COORDINATOR (app.js)
+       ========================================================================== */
+    const App = {
+      activeTab: 'market',
+      marketFilterCategory: 'all',
+      marketFilterType: 'all',
+      marketSearchQuery: '',
+      plantFilterSafety: 'all',
+      plantSearchQuery: '',
+
+      init() {
+        this.initTheme();
+        this.bindEvents();
+        Auth.updateHeaderUI();
+        this.renderMarketplace();
+        this.renderPlantDirectory();
+        QA.renderThreads();
+        Gallery.renderGallery();
+      },
+      initTheme() {
+        const saved = localStorage.getItem(STORAGE_KEYS.THEME) || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+        this.updateThemeButton(saved);
+      },
+      toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem(STORAGE_KEYS.THEME, next);
+        this.updateThemeButton(next);
+      },
+      updateThemeButton(theme) {
+        const btn = document.getElementById('theme-toggle-btn');
+        if (btn) btn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+      },
+      switchTab(tabId) {
+        this.activeTab = tabId;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+        document.querySelectorAll('.tab-content-view').forEach(v => v.classList.toggle('active', v.id === `tab-view-${tabId}`));
+        if (tabId === 'admin') {
+          if (!Auth.isAdmin()) {
+            this.showToast('หน้านี้สำหรับผู้ดูแลระบบเท่านั้น', 'error');
+            this.switchTab('market');
+            return;
+          }
+          Admin.renderStats();
+          Admin.switchSubTab(Admin.currentSubTab || 'listings');
+        }
+        window.scrollTo({ top: 380, behavior: 'smooth' });
+      },
+      renderMarketplace() {
+        const container = document.getElementById('marketplace-grid-container');
+        if (!container) return;
+        let listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        const bookmarks = JSON.parse(localStorage.getItem(STORAGE_KEYS.BOOKMARKS) || '[]');
+
+        if (this.marketFilterCategory !== 'all') listings = listings.filter(l => l.category === this.marketFilterCategory);
+        if (this.marketFilterType !== 'all') listings = listings.filter(l => l.type === this.marketFilterType);
+        if (this.marketSearchQuery) {
+          const q = this.marketSearchQuery.toLowerCase();
+          listings = listings.filter(l => l.title.toLowerCase().includes(q) || l.offering.toLowerCase().includes(q) || l.lookingFor.toLowerCase().includes(q));
+        }
+
+        if (listings.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--text-muted); background: var(--bg-surface); border-radius: var(--radius-md);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+              <h3>ไม่พบรายการประกาศที่ตรงกับเงื่อนไข</h3>
+              <p>ลองปรับคำค้นหา หรือเริ่มต้นสร้างประกาศแลกเปลี่ยนด้วยตัวคุณเอง</p>
+              <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="App.openCreateListingModal()">+ ลงประกาศใหม่</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = listings.map(item => {
+          const isBookmarked = bookmarks.includes(item.id);
+          return `
+            <div class="listing-card">
+              <div class="listing-card-image-wrap">
+                <span class="badge listing-type-badge ${item.type === 'swap' ? 'badge-swap' : 'badge-giveaway'}">
+                  ${item.type === 'swap' ? '🔄 แลกเปลี่ยน' : '🎁 แจกฟรี/หาบ้าน'}
+                </span>
+                <button class="listing-bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="App.toggleBookmark('${item.id}', event)">
+                  ${isBookmarked ? '❤️' : '🤍'}
+                </button>
+                <img src="${item.image}" alt="${item.title}" loading="lazy" onclick="App.openListingDetail('${item.id}')" style="cursor: pointer;">
+              </div>
+              <div class="listing-content">
+                <h3 class="listing-title" onclick="App.openListingDetail('${item.id}')" style="cursor: pointer;">${item.title}</h3>
+                <div class="listing-trade-details">
+                  <div class="trade-row"><span class="trade-label">เสนอให้:</span> <span class="trade-value">${item.offering}</span></div>
+                  <div class="trade-row"><span class="trade-label">อยากได้:</span> <span class="trade-value">${item.lookingFor}</span></div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">📍 ${item.location}</div>
+                <div class="listing-meta-footer">
+                  <div class="listing-author">
+                    <img src="${item.userAvatar}" alt="${item.userName}">
+                    <span>${item.userName}</span>
+                  </div>
+                  <button class="btn btn-outline btn-sm" onclick="App.openListingDetail('${item.id}')">ดูข้อมูล</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+      toggleBookmark(listingId, e) {
+        if (e) e.stopPropagation();
+        Auth.requireAuth(() => {
+          let bookmarks = JSON.parse(localStorage.getItem(STORAGE_KEYS.BOOKMARKS) || '[]');
+          const idx = bookmarks.indexOf(listingId);
+          if (idx > -1) {
+            bookmarks.splice(idx, 1);
+            this.showToast('นำออกจากรายการโปรดแล้ว', 'info');
+          } else {
+            bookmarks.push(listingId);
+            this.showToast('บันทึกลงรายการโปรดแล้ว!', 'success');
+          }
+          localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(bookmarks));
+          this.renderMarketplace();
+        });
+      },
+      openListingDetail(listingId) {
+        const listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        const item = listings.find(l => l.id === listingId);
+        if (!item) return;
+        const modalBody = document.getElementById('listing-detail-modal-body');
+        if (!modalBody) return;
+
+        modalBody.innerHTML = `
+          <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.5rem;">
+            <div style="border-radius: var(--radius-md); overflow: hidden; max-height: 380px;">
+              <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="badge ${item.type === 'swap' ? 'badge-swap' : 'badge-giveaway'}">
+                  ${item.type === 'swap' ? '🔄 แลกเปลี่ยน' : '🎁 แจกฟรี/ส่งต่อ'}
+                </span>
+                <span class="badge" style="background: var(--bg-page); color: var(--text-muted);">👁️ มีผู้เข้าชม ${item.views || 0} ครั้ง</span>
+              </div>
+              <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.4;">${item.title}</h2>
+              <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+                <div style="margin-bottom: 0.6rem;">
+                  <strong style="color: var(--primary);">สิ่งที่เสนอ:</strong>
+                  <p style="margin-top: 0.2rem; font-size: 0.95rem;">${item.offering}</p>
+                </div>
+                <div style="margin-bottom: 0.6rem;">
+                  <strong style="color: var(--secondary);">สิ่งที่อยากแลก:</strong>
+                  <p style="margin-top: 0.2rem; font-size: 0.95rem;">${item.lookingFor}</p>
+                </div>
+                <div>
+                  <strong>พิกัดนัดรับ:</strong>
+                  <p style="margin-top: 0.2rem; font-size: 0.9rem; color: var(--text-muted);">📍 ${item.location}</p>
+                </div>
+              </div>
+              <div style="border: 1px dashed var(--primary); background: var(--primary-surface); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+                <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">📞 ช่องทางติดต่อผู้ลงประกาศ</div>
+                <div style="font-size: 0.95rem; font-weight: 600;">${item.contact}</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="${item.userAvatar}" style="width: 44px; height: 44px; border-radius: 50%;">
+                <div>
+                  <div style="font-weight: 700;">${item.userName}</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">${item.userBadge || 'สมาชิก GreenPaws'}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        item.views = (item.views || 0) + 1;
+        localStorage.setItem(STORAGE_KEYS.LISTINGS, JSON.stringify(listings));
+        this.openModal('listing-detail-modal');
+      },
+      openCreateListingModal() {
+        Auth.requireAuth(() => this.openModal('create-listing-modal'));
+      },
+      createListing(data) {
+        const user = Auth.getCurrentUser();
+        if (!user) return;
+        const listings = JSON.parse(localStorage.getItem(STORAGE_KEYS.LISTINGS) || '[]');
+        listings.unshift({
+          id: 'list-' + Date.now(),
+          title: data.title,
+          type: data.type,
+          category: data.category,
+          offering: data.offering,
+          lookingFor: data.lookingFor,
+          location: data.location,
+          contact: data.contact,
+          image: data.image || 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=600&q=80',
+          userId: user.id,
+          userName: user.name,
+          userAvatar: user.avatar,
+          userBadge: user.badge,
+          status: 'active',
+          isFeatured: false,
+          views: 1,
+          createdAt: new Date().toISOString().split('T')[0]
+        });
+        localStorage.setItem(STORAGE_KEYS.LISTINGS, JSON.stringify(listings));
+        this.closeModal('create-listing-modal');
+        this.showToast('ลงประกาศแลกเปลี่ยนเรียบร้อยแล้ว!', 'success');
+        this.renderMarketplace();
+      },
+      renderPlantDirectory() {
+        const container = document.getElementById('plant-directory-grid-container');
+        if (!container) return;
+        let plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+
+        if (this.plantFilterSafety !== 'all') plants = plants.filter(p => p.safetyStatus === this.plantFilterSafety);
+        if (this.plantSearchQuery) {
+          const q = this.plantSearchQuery.toLowerCase();
+          plants = plants.filter(p => p.nameTh.toLowerCase().includes(q) || p.nameEn.toLowerCase().includes(q) || p.scientificName.toLowerCase().includes(q));
+        }
+
+        if (plants.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--text-muted); background: var(--bg-surface); border-radius: var(--radius-md);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">🌿</div>
+              <h3>ไม่พบข้อมูลต้นไม้ที่ค้นหา</h3>
+              <p>ลองค้นหาด้วยชื่อไทย ชื่อวิทยาศาสตร์ เช่น "คล้า", "เฟิร์น", "ลิลลี่"</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = plants.map(plant => {
+          const isSafe = plant.safetyStatus === 'safe';
+          return `
+            <div class="plant-card ${isSafe ? 'border-safe' : 'border-toxic'}">
+              <div class="plant-card-img-wrap">
+                <span class="badge plant-card-safety-badge ${isSafe ? 'badge-safe' : 'badge-toxic'}">
+                  ${isSafe ? '✓ ปลอดภัยต่อสัตว์เลี้ยง' : '⚠️ มีสารพิษควรระวัง'}
+                </span>
+                <img src="${plant.image}" alt="${plant.nameTh}" loading="lazy">
+              </div>
+              <div class="plant-card-body">
+                <div class="plant-names">
+                  <h3>${plant.nameTh}</h3>
+                  <div class="plant-scientific">${plant.scientificName}</div>
+                </div>
+                <p class="plant-description">${plant.description}</p>
+                <div class="plant-alert-box ${isSafe ? 'safe' : 'toxic'}">
+                  <strong>${isSafe ? '✅ ระดับความปลอดภัย:' : '⚠️ อาการที่ต้องระวัง:'}</strong>
+                  <div>${isSafe ? plant.toxicityLevel : plant.symptoms}</div>
+                </div>
+                <div class="plant-card-footer">
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">
+                    ${isSafe ? '🐾 ปลอดภัยกับน้องหมาและแมว' : '🚫 ห้ามให้น้องแทะเด็ดขาด'}
+                  </div>
+                  <button class="btn btn-outline btn-sm" onclick="App.openPlantDetail('${plant.id}')">ดูคู่มือการดูแล</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+      openPlantDetail(plantId) {
+        const plants = JSON.parse(localStorage.getItem(STORAGE_KEYS.PLANTS) || '[]');
+        const plant = plants.find(p => p.id === plantId);
+        if (!plant) return;
+        const modalBody = document.getElementById('plant-detail-modal-body');
+        if (!modalBody) return;
+        const isSafe = plant.safetyStatus === 'safe';
+
+        modalBody.innerHTML = `
+          <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem;">
+            <div style="border-radius: var(--radius-md); overflow: hidden; max-height: 400px;">
+              <img src="${plant.image}" alt="${plant.nameTh}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+              <span class="badge ${isSafe ? 'badge-safe' : 'badge-toxic'}" style="margin-bottom: 0.75rem;">
+                ${isSafe ? '✓ ปลอดภัยต่อสัตว์เลี้ยง (Pet-Safe)' : '⚠️ มีสารพิษต่อสัตว์เลี้ยง'}
+              </span>
+              <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.2rem;">${plant.nameTh}</h2>
+              <div style="font-size: 0.9rem; font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">
+                ${plant.scientificName} (${plant.nameEn})
+              </div>
+              <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">${plant.description}</p>
+              <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1rem;">
+                <h4 style="font-weight: 700; color: var(--primary); margin-bottom: 0.4rem;">🌱 เคล็ดลับการปลูกและดูแลรักษา</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">${plant.careGuide}</p>
+              </div>
+              ${!isSafe ? `
+                <div style="background: var(--danger-light); border: 1.5px solid var(--danger); border-radius: var(--radius-md); padding: 1rem; color: #991b1b; margin-bottom: 1rem;">
+                  <h4 style="font-weight: 700; margin-bottom: 0.4rem;">🚨 วิธีปฐมพยาบาลเมื่อสัตว์เลี้ยงเผลอกิน</h4>
+                  <p style="font-size: 0.9rem; line-height: 1.6;">${plant.firstAid || 'รีบเช็ดปาก ล้างน้ำสะอาด และนำส่งสัตวแพทย์ทันที'}</p>
+                </div>
+              ` : ''}
+              <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem;">
+                ${(plant.tags || []).map(t => `<span class="badge" style="background: var(--bg-page);">${t}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+        this.openModal('plant-detail-modal');
+      },
+      quickSearchPlant(query) {
+        if (!query) return;
+        this.plantSearchQuery = query;
+        const input = document.getElementById('plant-search-input');
+        if (input) input.value = query;
+        this.switchTab('knowledge');
+        this.renderPlantDirectory();
+      },
+      openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      },
+      closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      },
+      showToast(message, type = 'info') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        let icon = type === 'success' ? '✅' : (type === 'error' ? '❌' : 'ℹ️');
+        toast.innerHTML = `<span style="font-size: 1.25rem;">${icon}</span><span style="font-size: 0.9rem; font-weight: 500;">${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateX(100%)';
+          toast.style.transition = 'all 0.3s ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3500);
+      },
+      bindEvents() {
+        document.getElementById('theme-toggle-btn')?.addEventListener('click', () => this.toggleTheme());
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => this.switchTab(btn.dataset.tab)));
+
+        document.getElementById('quick-safety-input')?.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') this.quickSearchPlant(e.target.value.trim());
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) this.closeModal(overlay.id);
+          });
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => this.closeModal(m.id));
+        });
+
+        document.querySelectorAll('#market-category-filters .filter-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#market-category-filters .filter-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.marketFilterCategory = btn.dataset.category;
+            this.renderMarketplace();
+          });
+        });
+
+        document.querySelectorAll('#market-type-filters .filter-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#market-type-filters .filter-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.marketFilterType = btn.dataset.type;
+            this.renderMarketplace();
+          });
+        });
+
+        document.getElementById('market-search-input')?.addEventListener('input', (e) => {
+          this.marketSearchQuery = e.target.value.trim();
+          this.renderMarketplace();
+        });
+
+        document.querySelectorAll('#plant-safety-filters .filter-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#plant-safety-filters .filter-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.plantFilterSafety = btn.dataset.safety;
+            this.renderPlantDirectory();
+          });
+        });
+
+        document.getElementById('plant-search-input')?.addEventListener('input', (e) => {
+          this.plantSearchQuery = e.target.value.trim();
+          this.renderPlantDirectory();
+        });
+
+        document.querySelectorAll('#qa-filters .filter-pill').forEach(btn => btn.addEventListener('click', () => QA.setFilter(btn.dataset.filter)));
+        document.querySelectorAll('#gallery-filters .filter-pill').forEach(btn => btn.addEventListener('click', () => Gallery.setCategory(btn.dataset.category)));
+        document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.addEventListener('click', () => Admin.switchSubTab(btn.dataset.subtab)));
+
+        // User dropdown toggle
+        const userPill = document.getElementById('user-pill-btn');
+        const userDrop = document.getElementById('user-dropdown-menu');
+        if (userPill && userDrop) {
+          userPill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDrop.classList.toggle('show');
+          });
+          document.addEventListener('click', () => userDrop.classList.remove('show'));
+        }
+
+        document.getElementById('dropdown-logout-btn')?.addEventListener('click', () => {
+          Auth.logout();
+          App.showToast('ออกจากระบบเรียบร้อยแล้ว', 'info');
+          if (App.activeTab === 'admin') App.switchTab('market');
+        });
+      }
+    };
+
+    /* Form Handlers */
+    function showAuthTab(tab) {
+      const isLogin = tab === 'login';
+      document.getElementById('login-form').style.display = isLogin ? 'block' : 'none';
+      document.getElementById('register-form').style.display = isLogin ? 'none' : 'block';
+      document.getElementById('auth-tab-login').style.background = isLogin ? 'var(--bg-surface)' : 'transparent';
+      document.getElementById('auth-tab-login').style.color = isLogin ? 'var(--text-main)' : 'var(--text-muted)';
+      document.getElementById('auth-tab-register').style.background = !isLogin ? 'var(--bg-surface)' : 'transparent';
+      document.getElementById('auth-tab-register').style.color = !isLogin ? 'var(--text-main)' : 'var(--text-muted)';
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      try {
+        const user = Auth.login(document.getElementById('login-email').value.trim(), document.getElementById('login-password').value);
+        App.closeModal('auth-modal');
+        App.showToast(`ยินดีต้อนรับกลับ ${user.name}!`, 'success');
+      } catch (err) { App.showToast(err.message, 'error'); }
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      try {
+        const user = Auth.register({
+          name: document.getElementById('reg-name').value.trim(),
+          email: document.getElementById('reg-email').value.trim(),
+          password: document.getElementById('reg-password').value,
+          petOrPlantType: document.getElementById('reg-interest').value
+        });
+        App.closeModal('auth-modal');
+        App.showToast(`สมัครสมาชิกสำเร็จ! ยินดีต้อนรับคุณ ${user.name}`, 'success');
+      } catch (err) { App.showToast(err.message, 'error'); }
+    }
+
+    function handleCreateListingSubmit(e) {
+      e.preventDefault();
+      App.createListing({
+        title: document.getElementById('listing-form-title').value.trim(),
+        type: document.getElementById('listing-form-type').value,
+        category: document.getElementById('listing-form-category').value,
+        offering: document.getElementById('listing-form-offering').value.trim(),
+        lookingFor: document.getElementById('listing-form-looking').value.trim(),
+        location: document.getElementById('listing-form-location').value.trim(),
+        contact: document.getElementById('listing-form-contact').value.trim(),
+        image: document.getElementById('listing-form-image').value.trim()
+      });
+    }
+
+    function handleAskSubmit(e) {
+      e.preventDefault();
+      const sel = document.getElementById('qa-form-category');
+      QA.createThread({
+        title: document.getElementById('qa-form-title').value.trim(),
+        category: sel.value,
+        categoryLabel: sel.options[sel.selectedIndex].text,
+        content: document.getElementById('qa-form-content').value.trim()
+      });
+    }
+
+    function handleGallerySubmit(e) {
+      e.preventDefault();
+      const sel = document.getElementById('gal-form-category');
+      Gallery.createShowcase({
+        title: document.getElementById('gal-form-title').value.trim(),
+        category: sel.value,
+        categoryLabel: sel.options[sel.selectedIndex].text,
+        image: document.getElementById('gal-form-image').value.trim(),
+        description: document.getElementById('gal-form-desc').value.trim(),
+        tags: document.getElementById('gal-form-tags').value.trim()
+      });
+    }
+
+    function handleAdminAddPlantSubmit(e) {
+      e.preventDefault();
+      Admin.addPlant({
+        nameTh: document.getElementById('adm-p-nameth').value.trim(),
+        nameEn: document.getElementById('adm-p-nameen').value.trim(),
+        scientificName: document.getElementById('adm-p-sciname').value.trim(),
+        safetyStatus: document.getElementById('adm-p-safety').value,
+        toxicityLevel: document.getElementById('adm-p-level').value.trim(),
+        description: document.getElementById('adm-p-desc').value.trim(),
+        careGuide: document.getElementById('adm-p-care').value.trim(),
+        symptoms: document.getElementById('adm-p-symptoms').value.trim(),
+        firstAid: document.getElementById('adm-p-firstaid').value.trim(),
+        image: document.getElementById('adm-p-img').value.trim(),
+        tags: document.getElementById('adm-p-tags').value.trim()
+      });
+      App.closeModal('admin-add-plant-modal');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => App.init());
+  </script>
+</body>
+</html>
